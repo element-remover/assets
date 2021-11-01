@@ -28,7 +28,7 @@ const promoObj = {
     src: 'https://www.youtube.com/embed/PzmNssVLcLQ'
   }, {
     paid: true,
-    views: 0,
+    views: 33,
     by: 'Danijel Markov',
     src: 'https://www.youtube.com/watch?v=jVdDa5ksyrY'
   },
