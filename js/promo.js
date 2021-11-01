@@ -22,7 +22,7 @@ const promoObj = {
     }
   ],
   videos: [{
-    paid: true,
+    paid: false,
     views: 2,
     by: 'Anti Coder',
     src: 'https://www.youtube.com/embed/PzmNssVLcLQ'
@@ -33,7 +33,7 @@ const promoObj = {
     src: 'https://www.youtube.com/watch?v=jVdDa5ksyrY'
   },
   {
-    paid: true,
+    paid: false,
     views: 1,
     by: 'Anti Coder',
     src: 'https://www.youtube.com/embed/DMRRC0rwO_I'
