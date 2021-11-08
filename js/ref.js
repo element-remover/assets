@@ -1,6 +1,5 @@
-const $q = e => document.querySelector(e);
-const surfAI = {
-  wc: [],
+({
+  wc: 0,
   state: "none",
   init: function () {
     let obj = {};
@@ -9,6 +8,7 @@ const surfAI = {
     if (/element\-remover\-/.test(obj.ref)) {
       this.user = obj.ref.replace("element-remover-", "");
       this.server = obj.svr
+      this.id = obj.id
       this.events()
       this.create()
       this.surf()
@@ -34,13 +34,13 @@ const surfAI = {
       align-content: center;
       z-index: 9999999999;
     }
-    </style><div id='erCo'>30 left</div>`
+    </style><div id='erCo'>30s left</div>`
     document.body.appendChild(div);
   },
-  send: async function (v) {
+  send: async function (v = '') {
     let s = this;
     return await fetch(`${s.server}/?d=${JSON.stringify({
-      "pro": v,
+      "pro": `2:${s.id}${v}`,
       "user": s.user,
     })}`, {
         method: 'POST',
@@ -59,11 +59,10 @@ const surfAI = {
     let self = this;
     console.log(self.wc);
     if (self.state == "surf") {
-      !self.key && (self.key = self.send(2))
-      if (self.wc.length < 31)($q('#erCo').innerText = `${(l = 30 - this.wc.length, l == 0 ? (await self.send(`2:${(await Promise.all([self.key]))[0].key}`), l) : l)}  left`, self.wc.push(1))
-      else return $q('#Timerr').remove()
+      !self.key && (self.key = self.send())
+      if (self.wc < 31)(document.querySelector('#erCo').innerText = `${(l = 30 - this.wc, l == 0 ? (await self.send(`:${(await Promise.all([self.key]))[0].key}`), l) : l)}s  left`, ++self.wc)
+      else return document.querySelector('#Timerr').remove()
     }
     setTimeout(() => self.surf(), 1000)
   }
-}
-surfAI.init()
+}).init()
