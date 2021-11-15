@@ -633,11 +633,7 @@ function onYouTubeIframeAPIReady() {
 
 try {
   auth = firebase.auth();
- navigator.onLine && !navigator.userAgentData.mobile || true ? cS("body", () => ($("main").innerHTML = body, console.log("Body Got!") | app.start())) : popup("Web Extenstion is Not Supported") || popup("Device is Offline");
+  (navigator && navigator.onLine && navigator.userAgentData && !navigator.userAgentData.mobile) ? cS("body", () => ($("main").innerHTML = body, console.log("Body Got!") | app.start())) : popup("Web Extenstion is Not Supported") || popup("Device is Offline");
 } catch (err) {
   popup(err);
 }
-
-// (?<!enc0.*[\r\n]+.*)(((['"])([^'\("]*?)\2)|((`)([^`]*?)\4))
-
-// {([^{}]*?({[^{}]*?})[^{}]*?)*}
