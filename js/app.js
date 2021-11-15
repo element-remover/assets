@@ -27,21 +27,21 @@ const $ = e => typeof e === "string" ? document.querySelector(e) : e,
   cl = (el, cls, w = 1) => $(el) && (l = $(el).classList,
     l && cls.replace(/ +/g, " ").split(" ").map(c => w ? l.add(c) : l.remove(c))),
   evt = (el, w, func, aor = 1) => (e = $(el), aor ? e.addEventListener(w, func) : e.removeEventListener(w, func)),
-  reveal = (el, t = 400, s = " ") => $Arr(el + s + '.fn').forEach((e, i) => setTimeout(() => {
-    cl(e, 'fo');
-    cl(e, 'fn', 0);
-    setTimeout(() => cl(e, 'fo', 0), 500);
+  reveal = (el, t = 400, s = " ") => $Arr(el + s + '.ff').forEach((e, i) => setTimeout(() => {
+    cl(e, 'fg');
+    cl(e, 'ff', 0);
+    setTimeout(() => cl(e, 'fg', 0), 500);
   }, t * i)),
-  hide = arr => arr.map(e => $Arr(`${e}>*`).forEach(el => cl(el, 'fn'))),
-  none = (el, c = 1) => cl(el, 'al', c),
+  hide = arr => arr.map(e => $Arr(`${e}>*`).forEach(el => cl(el, 'ff'))),
+  none = (el, c = 1) => cl(el, 'ad', c),
   vanish = (id, con = 1) => {
     let el = $(id)
-    cl(el, 'fo', !con);
-    cl(el, 'fn', con);
+    cl(el, 'fg', !con);
+    cl(el, 'ff', con);
     el.style.height = el.height + "px";
-    setTimeout(() => cl(el, 'ge', con) | (el.style.height = 0) | el.removeAttribute("style"), 500);
+    setTimeout(() => cl(el, 'fw', con) | (el.style.height = 0) | el.removeAttribute("style"), 500);
   },
-  promote = () => !app.pro && app.tasks.promo() | evt("#n" + 'ax', "click", promote, 0),
+  promote = () => !app.pro && app.tasks.promo() | evt("#n" + 'ap', "click", promote, 0),
   create = (tag, cl, text = "", html = false, et, func) => {
     el = document.createElement(tag)
     el.setAttribute("class", cl)
@@ -58,28 +58,28 @@ const $ = e => typeof e === "string" ? document.querySelector(e) : e,
   },
   toggle = (el, c) => cl(el, c, !$(el).classList.contains(c)),
   time = [864E5, 2592E5, 72576E5],
-  inh = o => `<div class='j'><span class='p'></span><div class='k'>${(r = o.r || 0, r ? o.r : "Redirecting to")}<br><a ${o.l ? `href="${o.l}"` :""}>${o.n}</a></div>
-  <div class='l'>${o.i}</div></div>`,
+  inh = o => `<div class='b'><span class='h'></span><div class='c'>${(r = o.r || 0, r ? o.r : "Redirecting to")}<br><a ${o.l ? `href="${o.l}"` :""}>${o.n}</a></div>
+  <div class='d'>${o.i}</div></div>`,
 
   // Logging 
   log = (text, obj = "", color = 0, design = 0) => console.log(...obj != "" || color || design ? [`%c${["", "-->", "~~>", "==>", "=>>", "*", "  >="][design]} ${text}`,
     `color : ${["white", "green", "yellowgreen", "yellow", "blue", "orange", "pink", "red", "springgreen", "cyan", "darkorchid"][color]}`, obj
   ] : [text]),
   popup = (text, color) => {
-    if (!$('.gn')) {
-      let mesbox = create("div", 'gm');
-      let mes = create("div", 't z gn fh', text)
+    if (!$('.gf')) {
+      let mesbox = create("div", 'ge');
+      let mes = create("div", 'l r gf ez', text)
 
-      evt(mesbox, "mouseover", () => setTimeout(() => cl('.gn', 'fi', 0), 50))
+      evt(mesbox, "mouseover", () => setTimeout(() => cl('.gf', 'fa', 0), 50))
       mesbox.appendChild(mes)
       $('main').appendChild(mesbox)
     }
 
-    let el = $('.gn')
+    let el = $('.gf')
     el.innerHTML = `<span>${text}</span>`
     color && (el.style.background = color);
-    cl(el, 'fh fi', 0)
-    setTimeout(() => cl(el, 'fh fi'), 50)
+    cl(el, 'ez fa', 0)
+    setTimeout(() => cl(el, 'ez fa'), 50)
   },
   title = e => e.split(/-|\/| /).map(e => e.replace(/(\w)(?=\w{2,})/, e => e.toUpperCase())).join(' '),
   eh = err => console.log(err) | popup(title(err.code)),
@@ -89,8 +89,8 @@ const $ = e => typeof e === "string" ? document.querySelector(e) : e,
     y: 0,
     ex: (window.innerWidth / 2),
     ey: (window.innerHeight / 2),
-    dot: $('#fb'),
-    back: $('#fc'),
+    dot: $('#es'),
+    back: $('#et'),
 
     init: function () {
       this.events();
@@ -100,7 +100,7 @@ const $ = e => typeof e === "string" ? document.querySelector(e) : e,
     events: function () {
       var self = this;
 
-      ['a', 'button', '.br', '.gg', 'img'].map(e => $Arr(e).forEach(el =>
+      ['a', 'button', '.bj', '.fy', 'img'].map(e => $Arr(e).forEach(el =>
         evt(el, "mouseover", () => cl(el, 'czk') | self.toggleCS()) |
         evt(el, "mouseout", () => cl(el, 'czk', 0) | self.toggleCS(0))
       ))
@@ -135,14 +135,14 @@ const $ = e => typeof e === "string" ? document.querySelector(e) : e,
 
     toggleCS: function (con = 1) {
       var self = this;
-      cl(self.dot, 'gl', con);
-      cl(self.back, 'gl', con);
+      cl(self.dot, 'gd', con);
+      cl(self.back, 'gd', con);
     },
 
     toggleCV: function (con = 1) {
       var self = this;
-      cl(self.dot, 'gk', con);
-      cl(self.back, 'gk', con);
+      cl(self.dot, 'gc', con);
+      cl(self.back, 'gc', con);
     }
   },
 
@@ -159,8 +159,8 @@ const $ = e => typeof e === "string" ? document.querySelector(e) : e,
       update
     }
   },
-  ccc = () => app.pro && cl($p('#cr', 4), 'fu', [...app.tools.get()].splice(0, 2).map(e => parseInt(e)).reduce((a, b) => a + b) == 0),
-  ppt = e => cl($p(e.target, 4), 'fu', !app.pro),
+  ccc = () => app.pro && cl($p('#cj', 4), 'fm', [...app.tools.get()].splice(0, 2).map(e => parseInt(e)).reduce((a, b) => a + b) == 0),
+  ppt = e => cl($p(e.target, 4), 'fm', !app.pro),
   tsu = () => data(app.tools.get()).update(), // For Updating Tools
   loged = async () => {
     console.log("Waiting for User to Login...");
@@ -218,7 +218,7 @@ const app = {
 
   account: {
     keys: ["id", "email"],
-    arr: ['bh', 'bj'],
+    arr: ['az', 'bb'],
     init: function (user, data) {
       this.set(user);
       console.log("* Account Plan :", app.pro);
@@ -226,12 +226,12 @@ const app = {
       setTimeout(() => app.pro && this.timer.init(data), 1300)
     },
     set: function (user) {
-      this.arr.map((e, i) => $(`.bg.${e}`).innerText = user[this.keys[i]])
-      none('.be.bj', !user.email)
-      none('.an.bk', !user.trust)
+      this.arr.map((e, i) => $(`.ay.${e}`).innerText = user[this.keys[i]])
+      none('.aw.bb', !user.email)
+      none('.af.bc', !user.trust)
 
-      $Arr('.bl .bm .br').forEach((el, i) => {
-        cl(el.parentNode, 'bv', i == app.pro);
+      $Arr('.bd .be .bj').forEach((el, i) => {
+        cl(el.parentNode, 'bn', i == app.pro);
         text = i < app.pro ? "Unlocked" : i > app.pro ? "Get" : "";
         el.innerText = i ? text : "Unlocked";
       });
@@ -243,8 +243,8 @@ const app = {
       member: null,
       s: 0,
       init: function (data) {
-        this.button = $('.bl .bm.bv .br');
-        this.member = $('#eb');
+        this.button = $('.bd .be.bn .bj');
+        this.member = $('#dt');
         this.plan = data.plan;
         this.from = data.from;
         this.start();
@@ -268,7 +268,7 @@ const app = {
             app.send("")
           }
           this.button.innerText = text
-          this.member.innerHTML = text[0] === "E" ? `<no class='ga'>Expired</no>` : text.replace(/ /g, "").split(":").reverse().map((e, i) => `<no>${e}</no><span>${["second", "minute", "hour", "day"][i] + (ep = parseInt(e), ep != 1 && ep ? "s" : "")}</span> `).reverse().reduce((a, b) => a + b)
+          this.member.innerHTML = text[0] === "E" ? `<no class='fs'>Expired</no>` : text.replace(/ /g, "").split(":").reverse().map((e, i) => `<no>${e}</no><span>${["second", "minute", "hour", "day"][i] + (ep = parseInt(e), ep != 1 && ep ? "s" : "")}</span> `).reverse().reduce((a, b) => a + b)
         }
       },
       stop: function () {
@@ -290,7 +290,7 @@ const app = {
   },
 
   tools: {
-    arr: ['#cl', '#cn', '#co', '#cp', '#cq', '#cr'],
+    arr: ['#cd', '#cf', '#cg', '#ch', '#ci', '#cj'],
     values: "000000",
     init: function (obj) {
       this.setupEvents(0);
@@ -315,8 +315,8 @@ const app = {
   tasks: {
     keys: ["ad", "watch", "surf"],
     values: [3, 15, 30],
-    div: ['#ei', '#ej', '#ek'],
-    con: ['dq', 'ds', 'dy'],
+    div: ['#ea', '#eb', '#ec'],
+    con: ['di', 'dk', 'dq'],
     init: function (obj) {
       this.blocks();
       this.set(obj);
@@ -327,19 +327,19 @@ const app = {
     set: function (obj) {
       return this.keys.map((el, i) => {
         let e = obj[el] != undefined ? obj[el] : this.values[i];
-        (i != 1 || !$('.gb')) && vanish(`.${this.con[i]}`, !e);
+        (i != 1 || !$('.ft')) && vanish(`.${this.con[i]}`, !e);
         this.values[i] = e;
         $(this.div[i]).innerText = app.pro ? "" : e ? `${e + (i ? "s" : "")} left` : ""
-        cl($(this.div[i]).parentNode, 'fx', !e || app.pro);
+        cl($(this.div[i]).parentNode, 'fp', !e || app.pro);
         return e
       })
     },
     blocks: function () {
-      cl('.do', 'fz', app.pro);
-      none('#dn .ea', !app.pro)
-      none('.dp', app.pro);
-      none('.ec', app.pro == 2);
-      $('.do').innerHTML = app.pro ? `<span class='be'>Pr${app.pro == 1 ? "o" : "emium"} Membership Activated</span>` : `Complete Tasks to Become Pro Member for ${app.user.card === "member" ? 3 + " Days" : 1 + " Day"}.`
+      cl('.dg', 'fr', app.pro);
+      none('#df .ds', !app.pro)
+      none('.dh', app.pro);
+      none('.du', app.pro == 2);
+      $('.dg').innerHTML = app.pro ? `<span class='aw'>Pr${app.pro == 1 ? "o" : "emium"} Membership Activated</span>` : `Complete Tasks to Become Pro Member for ${app.user.card === "member" ? 3 + " Days" : 1 + " Day"}.`
     },
     rid: (arr, count = 1) => {
       let len = arr.length,
@@ -364,26 +364,26 @@ const app = {
 
         if (cv) {
           let video = res.watch[0]
-          cl('.ds', 'ge fn', 0);
-          $('#dt iframe').src = `https://www.youtube.com/embed/${video.src}?enablejsapi=1&modestbranding=1`
-          $('#dt .dv').innerText = video.views
-          $('#dt .dw').innerText = video.by
-          $('#dt .dx').innerText = video.paid
+          cl('.dk', 'fw ff', 0);
+          $('#dl iframe').src = `https://www.youtube.com/embed/${video.src}?enablejsapi=1&modestbranding=1`
+          $('#dl .dn').innerText = video.views
+          $('#dl .do').innerText = video.by
+          $('#dl .dp').innerText = video.paid
           this.watchBox.init(video.id);
         }
 
         if (cw) {
-          cl('.dy', 'ge fn', 0);
-          $('#dz').innerHTML = "";
-          res.webs.map(site => $('#dz').appendChild(create("div", 'gf',
-            `<div class='gg'><img data-src="https://element-remover.github.io/assets/svg/mui.svg" src="https://${site.img}" alt="${site.info}"></div><a href="https://${site.link}/?ref=element-remover-${app.su}&svr=${svr}&id=${site.id}" target="_blank"` +
-            `class='gh'></a><div class='bp'><div class='dn'><div class='ak'>${site.title}</div></div>${site.paid ? `<div class='gi'><span class='dx'></span></div>` : ``}</div>`, true)))
+          cl('.dq', 'fw ff', 0);
+          $('#dr').innerHTML = "";
+          res.webs.map(site => $('#dr').appendChild(create("div", 'fx',
+            `<div class='fy'><img data-src="https://element-remover.github.io/assets/svg/mui.svg" src="https://${site.img}" alt="${site.info}"></div><a href="https://${site.link}/?ref=element-remover-${app.su}&svr=${svr}&id=${site.id}" target="_blank"` +
+            `class='fz'></a><div class='bh'><div class='df'><div class='ac'>${site.title}</div></div>${site.paid ? `<div class='ga'><span class='dp'></span></div>` : ``}</div>`, true)))
         }
       }
     },
     watchBox: {
-      evt: ['unstarted', 'gd', 'gb', 'gc', 'buffering', 'cued'],
-      state: 'al',
+      evt: ['unstarted', 'fv', 'ft', 'fu', 'buffering', 'cued'],
+      state: 'ad',
       wc: 0,
       key: "",
       init: function (id) {
@@ -391,17 +391,17 @@ const app = {
         cS('iframe-demo', () => console.log("Watch Box Inite."), "https://www.youtube.com/iframe_api")
       },
       ready: function (v) {
-        v = new YT.Player('du', {
+        v = new YT.Player('dm', {
           events: {
             "onReady": () => console.log("Player Ready") | this.watch(),
-            "onStateChange": state => (w = this.evt[state.data + 1], (this.state = w) | cl('#dt', w) | cl('#dt', this.evt.filter(e => e != w).join(" "), 0)),
-            "onError": () => cl('#dt', 'error')
+            "onStateChange": state => (w = this.evt[state.data + 1], (this.state = w) | cl('#dl', w) | cl('#dl', this.evt.filter(e => e != w).join(" "), 0)),
+            "onError": () => cl('#dl', 'error')
           }
         });
       },
       watch: async function () {
         let self = this;
-        if (self.state == 'gb') {
+        if (self.state == 'ft') {
           console.log(self.wc);
           !self.key && (self.key = app.send("pro", `1:${self.id}`))
           if (self.wc < 16) {
@@ -416,7 +416,7 @@ const app = {
         setTimeout(() => self.watch(), 1000)
       },
       none: function () {
-        return this.state == 'gc' ? vanish('.ds') : setTimeout(() => this.none(), 2000);
+        return this.state == 'fu' ? vanish('.dk') : setTimeout(() => this.none(), 2000);
       }
     }
   },
@@ -436,16 +436,16 @@ const app = {
         trust: su.emailVerified
       }
       console.log(`User : \n`, u);
-      cl('main', 'i', 0);
+      cl('main', 'a', 0);
 
-      if (ref.s || u.card === "member" || ($('.m').remove() | setTimeout(() => none('#s', 0), 100) | reveal(['#r']), await loged())) {
-        none('#r')
+      if (ref.s || u.card === "member" || ($('.e').remove() | setTimeout(() => none('#k', 0), 100) | reveal(['#j']), await loged())) {
+        none('#j')
 
         db = firebase.firestore().collection("account").doc(u.card).collection(u.id)
 
         app.setUser(u);
         console.log("Getting User Info...")
-        typeof (await app.send("")) != "boolean" && none('.ai .al', 0)
+        typeof (await app.send("")) != "boolean" && none('.aa .ad', 0)
 
         let con = u.card !== "user",
           h = new Date().getHours();
@@ -460,12 +460,12 @@ const app = {
     })
   },
   activate: () => {
-    let slides = ['as', 'at', 'au', 'av', 'l', 'ax', 'ay'],
+    let slides = ['ak', 'al', 'am', 'an', 'd', 'ap', 'aq'],
       sides = ["account", "statistics", "tools", "privacy", "info", "pro", "dev"],
-      wsc = '.ai .w',
-      nav = '.am .aq',
-      sc = '.az .u .ba';
-    const opening = () => setTimeout(() => none('.ai') | reveal(nav, 200) | setTimeout(() => $(`#n` + (a = sides.reduce((a, b, i) => b == ref.s ? i : a + 0, -1), slides[a > 0 ? a : 0])).click(), 200 * slides.length), 500);
+      wsc = '.aa .o',
+      nav = '.ae .ai',
+      sc = '.ar .m .as';
+    const opening = () => setTimeout(() => none('.aa') | reveal(nav, 200) | setTimeout(() => $(`#n` + (a = sides.reduce((a, b, i) => b == ref.s ? i : a + 0, -1), slides[a > 0 ? a : 0])).click(), 200 * slides.length), 500);
 
     // Default Main Things
     hide([nav, sc + ">*"]);
@@ -474,41 +474,41 @@ const app = {
     $Arr(`${nav}>*`).forEach((e, i) => (e.id = "n" + slides[i]));
 
     app.extenstion()
-    evt('.bi', "click", evt => (cl(evt.target, 'fd'), setTimeout(() => cl(evt.target, 'fd', 0), 400)) | navigator.clipboard.writeText(evt.target.parentNode.firstElementChild.innerText));
-    $Arr('.bl .bm .br').forEach((el, i) => i && evt(el, "click", e => e.target.innerText == "Get" && $(`.am button:nth-child(${5 + i})`).click()))
-    evt('#n' + 'ax', "click", promote)
-    evt('#n' + 'av', "click", () => app.privacy())
-    evt('#ay .ez', "click", () => toggle('#ay .u', 'gj'))
+    evt('.ba', "click", evt => (cl(evt.target, 'eu'), setTimeout(() => cl(evt.target, 'eu', 0), 400)) | navigator.clipboard.writeText(evt.target.parentNode.firstElementChild.innerText));
+    $Arr('.bd .be .bj').forEach((el, i) => i && evt(el, "click", e => e.target.innerText == "Get" && $(`.ae button:nth-child(${5 + i})`).click()))
+    evt('#n' + 'ap', "click", promote)
+    evt('#n' + 'an', "click", () => app.privacy())
+    evt('#aq .eq', "click", () => toggle('#aq .m', 'gb'))
     $Arr(`${nav}>*`).forEach(e => evt(e, "click", evt => {
       let el = evt.target,
         pos = Array.from(el.parentNode.children).indexOf(el),
-        selected = $(`${nav} .bv`),
+        selected = $(`${nav} .bn`),
         selectpos = selected && Array.from(el.parentNode.children).indexOf(selected);
       if (selectpos != pos) {
-        selected && cl(`${nav} .bv`, 'bv', 0);
-        cl(el, 'bv');
+        selected && cl(`${nav} .bn`, 'bn', 0);
+        cl(el, 'bn');
         let ih = window.innerHeight;
-        $('style#n').innerHTML = `:root {--ty : translateY(${ih * -(pos)}px); --ih:${ih}px;}`
+        $('style#f').innerHTML = `:root {--ty : translateY(${ih * -(pos)}px); --ih:${ih}px;}`
         hide([sc, sc + ">*"]);
         reveal(`${sc}:nth-child(${(++pos)})`);
       }
     }));
 
-    (e = $('.m'), e && e.remove())
+    (e = $('.e'), e && e.remove())
     console.log("App Activated");
 
-    ref.s ? opening() : evt('.aj', "click", () => {
-      $('.aj').style = `transform: translateY(${-window.innerHeight}px);`;
+    ref.s ? opening() : evt('.ab', "click", () => {
+      $('.ab').style = `transform: translateY(${-window.innerHeight}px);`;
       opening();
     }) | reveal(wsc, 500);
   },
   info: async function () {
     const wfi = async id => (r = await new Promise(r => setTimeout(r, 500)), !capture ? $(id) ? (capture = true, $(id)) : wfi(id) : console.log("Already Captured!"));
     let self = this,
-      body = '#l .w .bb',
-      inse = $(`${body} .fs`),
-      page = $(`${body} .bs`),
-      btns = ['de', 'df', 'dg', 'ad', 'dh', 'dk', 'dl', 'dm', 'di', 'dj'],
+      body = '#d .o .at',
+      inse = $(`${body} .fk`),
+      page = $(`${body} .bk`),
+      btns = ['cw', 'cx', 'cy', 'v', 'cz', 'dc', 'dd', 'de', 'da', 'db'],
       hbtns = [],
       submit;
 
@@ -516,47 +516,47 @@ const app = {
       console.log("Waiting for User to Click on Extenstion Icon");
       let ext = await wfi("#exarea")
       if (ext) {
-        page.insertBefore(ext, $(`${body} .bc`))
+        page.insertBefore(ext, $(`${body} .au`))
         console.log("Extenstion Captured")
-        cl(body, 'fr', 0);
+        cl(body, 'fj', 0);
         inse.remove();
       }
     }
 
-    !$('#gx') && await new Promise(r => setTimeout(r, 1200));
-    $('#gx') && $('#l .bc').setAttribute("style", `height : ${window.getComputedStyle($('#gx')).height}; margin: 1em 0 0`);
+    !$('#gp') && await new Promise(r => setTimeout(r, 1200));
+    $('#gp') && $('#d .au').setAttribute("style", `height : ${window.getComputedStyle($('#gp')).height}; margin: 1em 0 0`);
     $Arr(`#exarea [id$='Btn']`).forEach(e => hbtns.push(e.id.replace('Btn', "")));
     hbtns.map(e => (i = btns.indexOf(e), i != -1 && btns.splice(i, 1)));
-    btns.map(el => none(`${body} .bc .${el}`));
-    submit = $('#hi');
-    cl(page, 'fy', $('#ht') || submit);
-    cl(`${body} .cv .cw`, 'fo', submit);
+    btns.map(el => none(`${body} .au .${el}`));
+    submit = $('#ha');
+    cl(page, 'fq', $('#hl') || submit);
+    cl(`${body} .cn .co`, 'fg', submit);
     if (submit) {
-      let bt = submit.querySelector('.hc').innerText == "Submit" ? 'di' : 'dj';
-      cl(`${body} .bc .${bt}`, 'fo', 0)
-      none(`${body} .bc .${bt}`, 0);
-      setTimeout(() => cl(`${body} .bc .${bt}`, 'fo'), 600);
-      let arr = bt == 'di' ? ['highlighted', 'dark'] : ['co', 'removing'],
-        arr2 = bt != 'di' ? ['highlighted', 'dark'] : ['co', 'removing'],
-        els = ['cx', 'cy', 'bv'];
-      els.map((e, i) => cl(`${body} .cv .cw .${e}`, (i < 2 ? (i == 1 ? 'p' : '') + arr2[0] : arr2[1]) + 'ElementBro', 0))
-      els.map((e, i) => cl(`${body} .cv .cw .${e}`, (i < 2 ? (i == 1 ? 'p' : '') + arr[0] : arr[1]) + 'ElementBro'))
+      let bt = submit.querySelector('.gu').innerText == "Submit" ? 'da' : 'db';
+      cl(`${body} .au .${bt}`, 'fg', 0)
+      none(`${body} .au .${bt}`, 0);
+      setTimeout(() => cl(`${body} .au .${bt}`, 'fg'), 600);
+      let arr = bt == 'da' ? ['highlighted', 'dark'] : ['cg', 'removing'],
+        arr2 = bt != 'da' ? ['highlighted', 'dark'] : ['cg', 'removing'],
+        els = ['cp', 'cq', 'bn'];
+      els.map((e, i) => cl(`${body} .cn .co .${e}`, (i < 2 ? (i == 1 ? 'p' : '') + arr2[0] : arr2[1]) + 'ElementBro', 0))
+      els.map((e, i) => cl(`${body} .cn .co .${e}`, (i < 2 ? (i == 1 ? 'p' : '') + arr[0] : arr[1]) + 'ElementBro'))
     }
-    hbtns.map(e => none(`${body} .bc .${e}`, 0) | (el = $(`#fv #${e}Btn`),
-      el && evt(el, "mouseover", () => cl(page, `fw ${e}`)) |
-      evt(el, "click", () => (/(i|e)m/i.test(e) && cl(page, 'fy')) |
-        cl(page, `fw ${e}`, 0) | self.info()) |
-      evt(el, "mouseleave", () => cl(page, `fw ${e}`, 0))))
+    hbtns.map(e => none(`${body} .au .${e}`, 0) | (el = $(`#fn #${e}Btn`),
+      el && evt(el, "mouseover", () => cl(page, `fo ${e}`)) |
+      evt(el, "click", () => (/(i|e)m/i.test(e) && cl(page, 'fq')) |
+        cl(page, `fo ${e}`, 0) | self.info()) |
+      evt(el, "mouseleave", () => cl(page, `fo ${e}`, 0))))
   },
   privacy: async function () {
- !$("script#privacy") && cS("privacy", () => privacy && ($('#av .bb').innerHTML = privacy));
+ !$("script#privacy") && cS("privacy", () => privacy && ($('#an .at').innerHTML = privacy));
   },
   extenstion: () => {
-    let arr = ['at', 'l', 'ax'];
+    let arr = ['al', 'd', 'ap'];
     console.log("Checking for Extenstion...");
 
     if ($('html.exinside')) {
-      arr.splice(1, app.pro ? 1 : 2).map((e, i) => (el = $(`#${e} .w>.bb`), cl(el, 'fq') |
+      arr.splice(1, app.pro ? 1 : 2).map((e, i) => (el = $(`#${e} .o>.at`), cl(el, 'fi') |
         (el.innerHTML = inh({
           l: `https://www.element-remover.web.app/?s=${["statistics", "pro"][i]}`,
           n: "www.element-remover.web.app",
@@ -565,9 +565,9 @@ const app = {
       ))
     } else {
       if ($('html.exinstalled')) {
-        arr.splice(0, 2).map((e, i) => (el = $(`#${e} .w>.bb`), cl(el, 'fr') |
+        arr.splice(0, 2).map((e, i) => (el = $(`#${e} .o>.at`), cl(el, 'fj') |
           evt("#n" + e, "click", i ? () => app.info() : () => setTimeout(() => cl("html", "exinsidestats"), 3000)) |
-          el.appendChild(create("div", 'fs', i == 0 ? inh({
+          el.appendChild(create("div", 'fk', i == 0 ? inh({
             l: "",
             n: "element-remover/web.html?s=statistics",
             i: "Opening Statistics Page"
@@ -578,7 +578,7 @@ const app = {
             i: "To Start Live Demo Do a Click on the Icon"
           }), true))))
       } else {
-        arr.splice(0, 2).map(e => (el = $(`#${e} .w>.bb`), cl(el, 'fq') | (el.innerHTML += inh({
+        arr.splice(0, 2).map(e => (el = $(`#${e} .o>.at`), cl(el, 'fi') | (el.innerHTML += inh({
           l: "https://chrome-extenstion.com/",
           n: "www.chrome-extenstion.com",
           i: "Please Install the Element Remover Extenstion First"
@@ -587,22 +587,22 @@ const app = {
       console.log("Extenstion Present", $("html.exinstalled") ? true : false);
     }
 
-    $Arr('.j').forEach(e => evt(e, "mouseover", () => setTimeout(() => e.querySelector('a').click(), 3000)));
+    $Arr('.b').forEach(e => evt(e, "mouseover", () => setTimeout(() => e.querySelector('a').click(), 3000)));
     $('html').removeAttribute("class");
   },
 
   start: function () {
     // Main Things 
-    $('style#n').innerHTML = `:root {--ty : translateY(0px); --ih:${window.innerHeight}px;}`
+    $('style#f').innerHTML = `:root {--ty : translateY(0px); --ih:${window.innerHeight}px;}`
 
     // Login Events
-    evt('.ae', "click", () => (logedIn == null && (logedIn = true)) | cl('#s', 'fn') | setTimeout(() => none('#r'), 500))
-    evt('#y', "click", () => auth
+    evt('.w', "click", () => (logedIn == null && (logedIn = true)) | cl('#k', 'ff') | setTimeout(() => none('#j'), 500))
+    evt('#q', "click", () => auth
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
-      .then(() => (logedIn = false) | $('.ae').click())
+      .then(() => (logedIn = false) | $('.w').click())
       .catch(error => eh(error)))
-    evt('#ac', "click", () => $('.ae').click())
-    hide(['#r', '.ai .w'])
+    evt('#u', "click", () => $('.w').click())
+    hide(['#j', '.aa .o'])
 
     this.auth()
     cursor.init()
