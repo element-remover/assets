@@ -1,15 +1,4 @@
 // Common Variables
-firebase.initializeApp({
-  apiKey: "AIzaSyA502RgJsNCKAtznHm6SX-C5IvQsyWaqNI",
-  authDomain: "element-remover.firebaseapp.com",
-  projectId: "element-remover",
-  databaseURL: "https://element-remover.firebaseio.com",
-  storageBucket: "element-remover.appspot.com",
-  messagingSenderId: "524051898519",
-  appId: "1:524051898519:web:9e8f4351873618e97309d2",
-  measurementId: "G-BC94E76T5Z"
-})
-
 let asc, db, snap, player, auth, logedIn = null,
   capture = false,
   ref = {
@@ -61,7 +50,7 @@ const $ = e => typeof e === "string" ? document.querySelector(e) : e,
   inh = o => `<div class='b'><span class='h'></span><div class='c'>${(r = o.r || 0, r ? o.r : "Redirecting to")}<br><a ${o.l ? `href="${o.l}"` :""}>${o.n}</a></div>
   <div class='d'>${o.i}</div></div>`,
 
-  // Logging 
+  // Logging
   log = (text, obj = "", color = 0, design = 0) => console.log(...obj != "" || color || design ? [`%c${["", "-->", "~~>", "==>", "=>>", "*", "  >="][design]} ${text}`,
     `color : ${["white", "green", "yellowgreen", "yellow", "blue", "orange", "pink", "red", "springgreen", "cyan", "darkorchid"][color]}`, obj
   ] : [text]),
@@ -162,21 +151,7 @@ const $ = e => typeof e === "string" ? document.querySelector(e) : e,
   ccc = () => app.pro && cl($p('#cj', 4), 'fm', [...app.tools.get()].splice(0, 2).map(e => parseInt(e)).reduce((a, b) => a + b) == 0),
   ppt = e => cl($p(e.target, 4), 'fm', !app.pro),
   tsu = () => data(app.tools.get()).update(), // For Updating Tools
-  loged = async () => {
-    console.log("Waiting for User to Login...");
-    if (logedIn != null) {
-      return logedIn;
-    }
-    await new Promise(r => setTimeout(r, 500));
-    return loged();
-  }, loaded = async () => {
-    console.log("Waiting for Data...");
-    if (!app.whole) {
-      return true;
-    }
-    await new Promise(r => setTimeout(r, 500));
-    return loaded();
-  };
+  wfi = async (f, s = "Something Got!", w = "Something", ms = 500) => (r = await new Promise(r => setTimeout(r, ms)), (res = f(), res ? (console.log(s), res) : (console.log("Waiting for", w + "..."), wfi(f, s, w, ms))));
 
 // App Initilized
 const app = {
@@ -212,6 +187,7 @@ const app = {
         this.data.plan != obj.plan ? app.init(null, obj) : this.tools.init(obj.tools)
       }
       this.data = obj
+
     }
     (this.ads && this.data) && this.whole && this.init() | (this.whole = false)
   },
@@ -420,6 +396,68 @@ const app = {
       }
     }
   },
+  statistics: function () {
+    !$("script#stats") && cS("stats", () => design &&
+
+      design.init(stats)
+
+
+    );
+    console.log("Currently in Development!");
+  },
+  privacy: async function () {
+ !$("script#privacy") && cS("privacy", () => privacy && ($('#an .at').innerHTML = privacy));
+  },
+
+  info: async function () {
+    let self = this,
+      body = '#d .o .at',
+      inse = $(`${body} .fk`),
+      page = $(`${body} .bk`),
+      btns = ['cw', 'cx', 'cy', 'v', 'cz', 'dc', 'dd', 'de', 'da', 'db'],
+      hbtns = [],
+      submit;
+
+    if (!capture) {
+      let ext = await wfi(() => !capture ? (el = $('#fn'), el ? (capture = true, el) : false) : false, "Exarea Got!", "User Click")
+
+      if (ext) {
+        page.insertBefore(ext, $(`${body} .au`))
+        cl(body, 'fj', 0);
+        inse.remove();
+      }
+    }
+
+    !$('#go') && await new Promise(r => setTimeout(r, 1200));
+    $('#go') && $('#d .au').setAttribute("style", `height : ${window.getComputedStyle($('#go')).height}; margin: 1em 0 0`);
+    $Arr(`#exarea [id$='Btn']`).forEach(e => hbtns.push(e.id.replace('Btn', "")));
+    hbtns.map(e => (i = btns.indexOf(e), i != -1 && btns.splice(i, 1)));
+    btns.map(el => none(`${body} .au .${el}`));
+    submit = $('#gz');
+    cl(page, 'fq', $('#hk') || submit);
+    cl(`${body} .cn .co`, 'fg', submit);
+    if (submit) {
+      let bt = submit.querySelector('.gt').innerText == "Submit" ? 'da' : 'db';
+      cl(`${body} .au .${bt}`, 'fg', 0)
+      none(`${body} .au .${bt}`, 0);
+      setTimeout(() => cl(`${body} .au .${bt}`, 'fg'), 600);
+      let hlter = [
+          ['gj', 'gi', 'gk'],
+          ['gm', 'gl', 'gn']
+        ],
+        arr = hlter[bt == 'da' ? 0 : 1],
+        arr2 = hlter[bt != 'da' ? 0 : 1],
+        els = ['cp', 'cq', 'bn'];
+      els.map((e, i) => cl(`${body} .cn .co .${e}`, arr2[i], 0) | cl(`${body} .cn .co .${e}`, arr[i]))
+    }
+    hbtns.map(e => none(`${body} .au .${e}`, 0) | (el = $(`#fn #${e}Btn`),
+      el && evt(el, "mouseover", () => cl(page, `fo ${e}`)) |
+      evt(el, "click", () => (/(i|e)m/i.test(e) && cl(page, 'fq')) |
+        cl(page, `fo ${e}`, 0) | self.info()) |
+      evt(el, "mouseleave", () => cl(page, `fo ${e}`, 0))))
+  },
+
+
 
   auth: async () => {
     // Authorization
@@ -438,7 +476,7 @@ const app = {
       console.log(`User : \n`, u);
       cl('main', 'a', 0);
 
-      if (ref.s || u.card === "member" || ($('.e').remove() | setTimeout(() => none('#k', 0), 100) | reveal(['#j']), await loged())) {
+      if (ref.s || u.card === "member" || ($('.e').remove() | setTimeout(() => none('#k', 0), 100) | reveal(['#j']), await wfi(() => logedIn != null, "User Loged In", "User to Login"))) {
         none('#j')
 
         db = firebase.firestore().collection("account").doc(u.card).collection(u.id)
@@ -454,7 +492,7 @@ const app = {
         // For Changes
         snap = db.onSnapshot(snap => snap.docChanges().forEach(change => console.log(change.type) | app.update(change.doc.data())), err => console.log(err));
 
-        await loaded();
+        await wfi(() => !app.whole, "User Data Got!", "User Data")
         app.activate();
       }
     })
@@ -473,10 +511,9 @@ const app = {
     $Arr(`${sc}`).forEach((e, i) => (e.id = slides[i]));
     $Arr(`${nav}>*`).forEach((e, i) => (e.id = "n" + slides[i]));
 
-    app.extenstion()
+    app.extension()
     evt('.ba', "click", evt => (cl(evt.target, 'eu'), setTimeout(() => cl(evt.target, 'eu', 0), 400)) | navigator.clipboard.writeText(evt.target.parentNode.firstElementChild.innerText));
     $Arr('.bd .be .bj').forEach((el, i) => i && evt(el, "click", e => e.target.innerText == "Get" && $(`.ae button:nth-child(${5 + i})`).click()))
-    evt('#n' + 'ap', "click", promote)
     evt('#n' + 'an', "click", () => app.privacy())
     evt('#aq .eq', "click", () => toggle('#aq .m', 'gb'))
     $Arr(`${nav}>*`).forEach(e => evt(e, "click", evt => {
@@ -502,90 +539,31 @@ const app = {
       opening();
     }) | reveal(wsc, 500);
   },
-  info: async function () {
-    const wfi = async id => (r = await new Promise(r => setTimeout(r, 500)), !capture ? $(id) ? (capture = true, $(id)) : wfi(id) : console.log("Already Captured!"));
-    let self = this,
-      body = '#d .o .at',
-      inse = $(`${body} .fk`),
-      page = $(`${body} .bk`),
-      btns = ['cw', 'cx', 'cy', 'v', 'cz', 'dc', 'dd', 'de', 'da', 'db'],
-      hbtns = [],
-      submit;
+  extension: () => {
+    console.log("Checking for Extension...");
 
-    if (!capture) {
-      console.log("Waiting for User to Click on Extenstion Icon");
-      let ext = await wfi("#exarea")
-      if (ext) {
-        page.insertBefore(ext, $(`${body} .au`))
-        console.log("Extenstion Captured")
-        cl(body, 'fj', 0);
-        inse.remove();
-      }
-    }
 
-    !$('#gp') && await new Promise(r => setTimeout(r, 1200));
-    $('#gp') && $('#d .au').setAttribute("style", `height : ${window.getComputedStyle($('#gp')).height}; margin: 1em 0 0`);
-    $Arr(`#exarea [id$='Btn']`).forEach(e => hbtns.push(e.id.replace('Btn', "")));
-    hbtns.map(e => (i = btns.indexOf(e), i != -1 && btns.splice(i, 1)));
-    btns.map(el => none(`${body} .au .${el}`));
-    submit = $('#ha');
-    cl(page, 'fq', $('#hl') || submit);
-    cl(`${body} .cn .co`, 'fg', submit);
-    if (submit) {
-      let bt = submit.querySelector('.gu').innerText == "Submit" ? 'da' : 'db';
-      cl(`${body} .au .${bt}`, 'fg', 0)
-      none(`${body} .au .${bt}`, 0);
-      setTimeout(() => cl(`${body} .au .${bt}`, 'fg'), 600);
-      let arr = bt == 'da' ? ['highlighted', 'dark'] : ['cg', 'removing'],
-        arr2 = bt != 'da' ? ['highlighted', 'dark'] : ['cg', 'removing'],
-        els = ['cp', 'cq', 'bn'];
-      els.map((e, i) => cl(`${body} .cn .co .${e}`, (i < 2 ? (i == 1 ? 'p' : '') + arr2[0] : arr2[1]) + 'ElementBro', 0))
-      els.map((e, i) => cl(`${body} .cn .co .${e}`, (i < 2 ? (i == 1 ? 'p' : '') + arr[0] : arr[1]) + 'ElementBro'))
-    }
-    hbtns.map(e => none(`${body} .au .${e}`, 0) | (el = $(`#fn #${e}Btn`),
-      el && evt(el, "mouseover", () => cl(page, `fo ${e}`)) |
-      evt(el, "click", () => (/(i|e)m/i.test(e) && cl(page, 'fq')) |
-        cl(page, `fo ${e}`, 0) | self.info()) |
-      evt(el, "mouseleave", () => cl(page, `fo ${e}`, 0))))
-  },
-  privacy: async function () {
- !$("script#privacy") && cS("privacy", () => privacy && ($('#an .at').innerHTML = privacy));
-  },
-  extenstion: () => {
-    let arr = ['al', 'd', 'ap'];
-    console.log("Checking for Extenstion...");
 
-    if ($('html.exinside')) {
-      arr.splice(1, app.pro ? 1 : 2).map((e, i) => (el = $(`#${e} .o>.at`), cl(el, 'fi') |
-        (el.innerHTML = inh({
-          l: `https://www.element-remover.web.app/?s=${["statistics", "pro"][i]}`,
-          n: "www.element-remover.web.app",
-          i: i ? "Ads can't be shown in Extenstion Web Page [Voliates Extenstion Policy]" : "For Live Demo"
-        }))
-      ))
-    } else {
-      if ($('html.exinstalled')) {
-        arr.splice(0, 2).map((e, i) => (el = $(`#${e} .o>.at`), cl(el, 'fj') |
-          evt("#n" + e, "click", i ? () => app.info() : () => setTimeout(() => cl("html", "exinsidestats"), 3000)) |
-          el.appendChild(create("div", 'fk', i == 0 ? inh({
+      let arr = ['al', 'd'];
+      evt('#n' + 'ap', "click", promote);
+
+      $('html.exinstalled') ?
+        arr.map((e, i) => (el = $(`#${e} .o>.at`), cl(el, 'fj') |
+          evt("#n" + e, "click", i ? () => app.info() : () => app.statistics()) |
+          el.appendChild(create("div", 'fk', inh({
             l: "",
-            n: "element-remover/web.html?s=statistics",
-            i: "Opening Statistics Page"
-          }) : inh({
-            l: "",
-            n: "User to click on Element Remover Extenstion Icon",
-            r: "Waiting For",
-            i: "To Start Live Demo Do a Click on the Icon"
-          }), true))))
-      } else {
-        arr.splice(0, 2).map(e => (el = $(`#${e} .o>.at`), cl(el, 'fi') | (el.innerHTML += inh({
-          l: "https://chrome-extenstion.com/",
-          n: "www.chrome-extenstion.com",
-          i: "Please Install the Element Remover Extenstion First"
+            r: ["Fetching Statistics From", "Waiting For"][i],
+            n: ["Extension", "User to click on Element Remover Extension Icon"][i],
+            i: ["Currently in Development!", "To Start Live Demo Do a Click on the Icon"][i]
+          }), true)))) :
+        arr.map(e => (el = $(`#${e} .o>.at`), cl(el, 'fi') | (el.innerHTML += inh({
+          l: "https://chrome-extension.com/",
+          n: "www.chrome-extension.com",
+          i: "Please Install the Element Remover Extension First"
         }))))
-      }
-      console.log("Extenstion Present", $("html.exinstalled") ? true : false);
-    }
+
+      console.log("Extension Present", $("html.exinstalled") ? true : false);
+
 
     $Arr('.b').forEach(e => evt(e, "mouseover", () => setTimeout(() => e.querySelector('a').click(), 3000)));
     $('html').removeAttribute("class");
@@ -605,7 +583,6 @@ const app = {
     hide(['#j', '.aa .o'])
 
     this.auth()
-    cursor.init()
   },
   send: async (key, value = 1, user = 1) => {
     let obj = {
@@ -631,13 +608,24 @@ function onYouTubeIframeAPIReady() {
   app.tasks.watchBox.ready(player)
 }
 
-try {
-  auth = firebase.auth();
- navigator.onLine && !navigator.userAgentData.mobile || true ? cS("body", () => ($("main").innerHTML = body, console.log("Body Got!") | app.start())) : popup("Web Extenstion is Not Supported") || popup("Device is Offline");
-} catch (err) {
-  popup(err);
+async function online() {
+  cursor.init()
+  try {
+    await wfi(() => navigator && navigator.onLine, "User is Online Now!", "Internet");
+    firebase.initializeApp({
+      apiKey: "AIzaSyA502RgJsNCKAtznHm6SX-C5IvQsyWaqNI",
+      authDomain: "element-remover.firebaseapp.com",
+      projectId: "element-remover",
+      databaseURL: "https://element-remover.firebaseio.com",
+      storageBucket: "element-remover.appspot.com",
+      messagingSenderId: "524051898519",
+      appId: "1:524051898519:web:9e8f4351873618e97309d2",
+      measurementId: "G-BC94E76T5Z"
+    })
+    auth = firebase.auth();
+ (navigator.userAgentData && !navigator.userAgentData.mobile) ? cS("body", () => ($("main").innerHTML = body, console.log("Body Got!") | app.start())) : popup("Web Extension is Not Supported");
+  } catch (err) {
+    popup(err);
+  }
 }
-
-// (?<!enc0.*[\r\n]+.*)(((['"])([^'\("]*?)\2)|((`)([^`]*?)\4))
-
-// {([^{}]*?({[^{}]*?})[^{}]*?)*}
+online();
