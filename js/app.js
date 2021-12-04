@@ -13,7 +13,7 @@ const check = {
         action: 'submit'
       }).then(async token => {
         console.log("token" ,token, this.count);
-        res = await fetch("http://www.google.com/recaptcha/api/siteverify", {
+        res = await fetch("https://www.google.com/recaptcha/api/siteverify", {
           method: "POST",
           content: {
             secret: this.key,
