@@ -1,1 +1,739 @@
-let db,player,ref={svr:"https://element-remover.herokuapp.com"};window.location.href.split(/[&?]/).filter((e=>e.match("="))).map((e=>(o=e.split("="),ref[o[0]]=o[1])));const wfi=async(e,t="Something Got!",i="Something",a=500,n=-1)=>(r=await new Promise((e=>setTimeout(e,a))),res=e(),res||0==n?res:await wfi(e,t,i,a,n-1)),$=e=>"string"==typeof e?document.querySelector(e):e,$Arr=e=>document.querySelectorAll(e),$i=e=>$("#"+e),$p=(e,t)=>0==t?e:$p($(e).parentNode,t-1),cl=(e,t,i=1)=>$(e)&&(l=$(e).classList,l&&t.replace(/ +/g," ").split(" ").map((e=>i?l.add(e):l.remove(e)))),evt=(t,i,a,n=1)=>(e=$(t),n?e.addEventListener(i,a):e.removeEventListener(i,a)),reveal=(e,t=400,i=" ")=>$Arr(e+i+".fg").forEach(((e,i)=>setTimeout((()=>{cl(e,"fh"),cl(e,"fg",0),setTimeout((()=>cl(e,"fh",0)),500)}),t*i))),hide=e=>e.map((e=>$Arr(`${e}>*`).forEach((e=>cl(e,"fg"))))),none=(e,t=1)=>cl(e,"ac",t),vanish=(e,t=1)=>{let i=$(e);cl(i,"fh",!t),cl(i,"fg",t),i.style.height=i.height+"px",setTimeout((()=>cl(i,"fw",t)|(i.style.height=0)|i.removeAttribute("style")),500)},promote=()=>!app.pro&&app.tasks.promo()|evt("#nao","click",promote,0),create=(e,t,i="",a=0,n,s)=>(el=document.createElement(e),el.setAttribute("class",t),el[a?"innerHTML":"innerText"]=i,n&&evt(el,n,s),el),cS=(t,i,a=null,n=!1)=>{e=document.createElement("script"),e.id=t,e.src=a||`https://element-remover.github.io/assets/js/${t}.js`,e.onload=i,n&&(e.async=!0),$("head").appendChild(e)},toggle=(e,t)=>cl(e,t,!$(e).classList.contains(t)),time=[2592e5,5184e5,72576e5],inh=e=>create("div","fk",`<div class='b'><span class='h'></span><div class='c'>${e.r}</div><a ${e.l?`href="${e.l}"`:""}>${e.n}</a><div class='d'>${e.i}</div></div>`,1),inhe=(e,t)=>{let i=$(`${e} .b`);i.querySelector(".c").innerText=t.r||" ",a=i.querySelector("a"),t.l?a.href=t.l:a.removeAttribute("href"),a.innerText=t.n||" ",i.querySelector(".d").innerText=t.i||" "},log=(e,t="",i=0,a=0)=>{},popup=(e,t)=>{if(!$(".gg")){let t=create("div","gf"),i=create("div","k q gg fa",e);evt(t,"mouseover",(()=>setTimeout((()=>cl(".gg","fb",0)),50))),t.appendChild(i),$("main").appendChild(t)}let i=$(".gg");i.innerHTML=`<span>${e}</span>`,t&&(i.style.background=t),cl(i,"fa fb",0),setTimeout((()=>cl(i,"fa fb")),50)},title=e=>e.split(/-|\/| /).map((e=>e.replace(/(\w)(?=\w{2,})/,(e=>e.toUpperCase())))).join(" "),eh=e=>void 0|popup(title(e.code)),cursor={d:9,x:0,y:0,ex:window.innerWidth/2,ey:window.innerHeight/2,dot:$("#et"),back:$("#eu"),init:function(){this.events(),this.animate()},events:function(){var e=this;["a","button",".bi",".fy","img",'[role="button"]'].map((t=>$Arr(t).forEach((t=>evt(t,"mouseover",(()=>cl(t,"czk")|e.toggleCS()))|evt(t,"mouseout",(()=>cl(t,"czk",0)|e.toggleCS(0))))))),evt(document,"mousemove",(function(t){e.toggleCV(),e.ex=t.clientX,e.ey=t.clientY,e.dot.style.top=e.ey+"px",e.dot.style.left=e.ex+"px"})),evt(document,"click",(()=>$(".czk")&&e.toggleCV(0)|setTimeout((()=>e.toggleCS()),400))),evt(document,"mousedown",(()=>e.toggleCS())),evt(document,"mouseup",(()=>e.toggleCS(0))),evt(document,"mouseenter",(()=>e.toggleCV())),evt(document,"mouseover",(t=>"IFRAME"==t.target.nodeName&&e.toggleCV(0))),evt(document,"mouseleave",(()=>e.toggleCV(0)))},animate:function(){var e=this;const t=(e,t)=>((e+"").match(/e/)?t:e)+"px";e.x+=(e.ex-e.x)/e.d,e.y+=(e.ey-e.y)/e.d,e.back.style.top=t(e.y,e.ey),e.back.style.left=t(e.x,e.ex),requestAnimationFrame(this.animate.bind(e))},toggleCS:function(e=1){cl(this.dot,"ge",e),cl(this.back,"ge",e)},toggleCV:function(e=1){cl(this.dot,"gd",e),cl(this.back,"gd",e)}},data=e=>{const t=db.doc("data");return{get:async()=>await t.get(),update:()=>t.update({tools:e}).catch((e=>eh(e)))}},ccc=()=>app.pro&&cl($p("#cj",4),"fm",0==[...app.tools.get()].splice(0,2).map((e=>parseInt(e))).reduce(((e,t)=>e+t))),ppt=e=>cl($p(e.target,4),"fm",!app.pro),tsu=async()=>await base.online()|data(app.tools.get()).update(),app={isExt:"http:"!==window.location.protocol,su:null,ads:null,user:null,data:null,pro:0,whole:!0,init:function(e,t){e=e||this.user,t=t||this.data,this.pro=t.plan,this.account.init(e,t),this.tools.init(t.tools),this.tasks.init(this.ads)},setUser:async function(e){let t="member"===e.card;t&&(this.su=[e.card,e.id].join(":")),r=await app.send("id",!t,t?1:0),r.w&&(e.w=r.w),!t&&(e.id=r.id),this.user=e,this.account.set(e),!t&&(this.su=[e.card,e.id].join(":"))},update:function(e){-1!=Object.keys(e).indexOf("ad")?(this.ads=e,!this.whole&&this.tasks.init(e)):(this.data&&!this.whole&&(this.data.plan!=e.plan?app.init(null,e):this.tools.init(e.tools)),this.data=e),this.ads&&this.data&&this.whole&&(this.init(),this.whole=!1)},account:{keys:["id","email"],arr:["ay","ba"],init:function(e,t){this.set(e),this.timer.stop(),setTimeout((()=>app.pro&&this.timer.init(t)),1300)},set:function(e){this.arr.map(((t,i)=>$(`.ax.${t}`).innerText=e[this.keys[i]])),none(".av.ba",!e.email),none(".ae.bb",!e.trust),$Arr(".bc .bd .bi").forEach(((e,t)=>{cl(e.parentNode,"bn",t==app.pro),text=t<app.pro?"Unlocked":t>app.pro?"Get":"",e.innerText=t?text:"Unlocked"})),$(".bj").innerText="Ends in "+(("member"===app.user.card?6:3)+" Days")},timer:{plan:null,from:null,button:null,member:null,s:0,init:function(e){this.button=$(".bc .bd.bn .bi"),this.member=$("#du"),this.plan=e.plan,this.from=e.from,this.start(),this.s=0},start:async function(){let e=this;if(0!=this.plan&&null!=this.from){let t,i=Math.abs(new Date(this.from)-new Date),a=time[this.plan];if(i<a){if(t=this.getms(a-i),this.s)return void(e.s=0);setTimeout((()=>this.start()),1e3)}else t="Expired";this.button.innerText=t,this.member.innerHTML="E"===t[0]?"<no class='fs'>Expired</no>":t.replace(/ /g,"").split(":").reverse().map(((e,t)=>`<no>${e}</no><span>${["second","minute","hour","day"][t]+(ep=parseInt(e),1!=ep&&ep?"s":"")}</span> `)).reverse().reduce(((e,t)=>e+t)),"E"===t[0]&&(await app.send(""),$("#nao").click())}},stop:function(){let e=this;e.s=1,setTimeout((()=>e.s=0),1150)},getms:e=>{let t=[86400,3600,60,1,0].map((e=>1e3*e)),i=[];const a=(e,n)=>{let s=parseInt(e),o=t[n];return o?s>=o||i.length?(i.push(1==(ei=parseInt(s/o)+"",ei).length?"0"+ei:ei),a(s%o,++n)):a(s,++n):0};return a(e,0),i.length?i.join(" : "):"00"}}},tools:{arr:["#cd","#cf","#cg","#ch","#ci","#cj"],values:"000000",init:function(e){this.setupEvents(0),this.setupEvents(1),this.set(e)},set:function(e){return("string"==typeof e?e:this.values).split("").splice(0,6).map(((e,t)=>(c=parseInt(e),$(app.tools.arr[t]).checked=t<4||app.pro?c:0))).reduce(((e,t)=>e.toString()+t))},get:function(){return this.arr.map((e=>$(e).checked?"1":"0")).reduce(((e,t)=>e+t))},setupEvents:function(e){let t=[...this.arr];t.splice(0,2).map((t=>evt(t,"click",ccc,e))),t.splice(2).map((t=>evt(t,"click",ppt,e))),this.arr.map((t=>(e&&$(t).click())|evt(t,"click",tsu,e)))}},tasks:{keys:["ad","watch","surf"],values:[3,15,30],div:["#eb","#ec","#ed"],con:["dj","dl","dr"],init:async function(e){await base.online(),this.blocks(),this.set(e),0===Object.values(e).reduce(((e,t)=>e+t))&&app.send("")},set:function(e){return this.keys.map(((t,i)=>{let a=null!=e[t]?e[t]:this.values[i];return(1!=i||!$(".ft"))&&vanish(`.${this.con[i]}`,!a),this.values[i]=a,$(this.div[i]).innerText=app.pro?"":a?a+(i?"s":"")+" left":"",cl($(this.div[i]).parentNode,"gb",!a||app.pro),a}))},promo:async function(){let e=app.ads.watch,t=app.ads.surf;if(app.ads.ad&&{id:"ca-pub-5974221028195695",init:function(){[{n:"alpha",s:"2153949148"},{n:"beta",s:"8811706890"},{n:"gama",s:"9550073496"},{n:"deta",s:"5793827168"}].map((e=>$("#dk").appendChild(create("div","eb",`\x3c!-- ${e.n} --\x3e<ins class="adsbygoogle" style="display:block" data-ad-client="${this.id}" data-ad-slot="${e.s}" data-ad-format="auto" data-full-width-responsive="true"></ins></div>`,!0),""))).map((e=>(adsbygoogle=window.adsbygoogle||[]).push({})))}}.init(),e||t){let i=await app.send("promo");if(e){let e=i.watch[0];cl(".dl","fw fg",0),$("#dm iframe").src=`https://www.youtube.com/embed/${e.src}?enablejsapi=1&modestbranding=1`,$("#dm .do").innerText=e.views,$("#dm .dp").innerText=e.by,$("#dm .dq").innerText=e.paid,this.watchBox.init(e.id)}t&&(cl(".dr","fw fg",0),$("#ds").innerHTML="",i.webs.map((e=>$("#ds").appendChild(create("div","fx",`<div class='fy'><img data-src="https://element-remover.github.io/assets/static/svg/mui.svg" src="https://ik.imagekit.io/downlaod/${e.img}?tr=w-600h-300" alt="${e.info}"></div><a href="https://${e.link}/?ref=element-remover-${app.su}&svr=${ref.svr}&id=${e.id}" target="_blank"class='fz'></a><div class='bg'><div class='dg'><div class='ab'>${e.title}</div></div>${e.paid?"<div class='ga'><span class='dq'></span></div>":""}</div>`,!0)))))}},watchBox:{evt:["unstarted","fv","ft","fu","buffering","cued"],state:"ac",wc:0,key:"",init:function(e){this.id=e,cS("iframe-demo",(()=>{}),"https://www.youtube.com/iframe_api")},ready:function(e){new YT.Player("dn",{events:{onReady:()=>void 0|this.watch(),onStateChange:e=>(w=this.evt[e.data+1],(this.state=w)|cl("#dm",w)|cl("#dm",this.evt.filter((e=>e!=w)).join(" "),0)),onError:()=>cl("#dm","error")}})},watch:async function(){let e=this;if("ft"==e.state){if(!e.key&&(e.key=app.send("pro",`1:${e.id}`)),!(e.wc<16))return e.none();{let t=15-e.wc;++e.wc,0==t&&await app.send("pro",`1:${e.id}:${(await Promise.all([e.key]))[0].key}`),app.tasks.set({watch:t})}}setTimeout((()=>e.watch()),1e3)},none:function(){return"fu"==this.state?vanish(".dl"):setTimeout((()=>this.none()),2e3)}},blocks:function(){app.pro&&cl("#ao > .n > .as","ex",0),cl(".dh","fr",app.pro),none("#dg .dt",!app.pro),none(".di",app.pro),none(".dv",2==app.pro),$(".dh").innerHTML=app.pro?`<span class='av'>Pr${1==app.pro?"o":"emium"} Membership Activated</span>`:`Complete Tasks to Become Pro Member for ${("member"===app.user.card?6:3)+" Days"}.`}},statistics:function(){!$("script#stats")&&cS("stats",(()=>$("body").appendChild(create("data","stats"))|wfi((()=>(e=$("data.stats").innerText,""!=e&&($("data.stats").remove(),design.init(JSON.parse(e).stats),!0))),"Statistics Got!","Statistics from Extension",2e3,-1)))},privacy:async function(){!$("script#privacy")&&cS("privacy",(()=>privacy&&($("#am .as").innerHTML=privacy)))},info:{count:0,area:!1,body:"#d .n .as",btns:["cw","cx","cy","da","cz","dd","de","df"],main:"#gp",els:["cp","cq","bn"],hlter:[["gk","gj","gl"],["gn","gm","go"]],capture:async function(){let e=this;if(!e.count){e.count=1;let t=await wfi((()=>!e.area&&(el=$("#fn"),!!el&&(e.area=!0,el))),"Exarea Got!","User Click");e.page=$(`${e.body} .bk`),e.page.insertBefore(t,$(`${e.body} .at`)),cl(e.body,"fj",0),$(`${e.body} .fk`).remove(),e.show()}},show:async function(){let e,t=this,a=[...t.btns],n=[];if(!$(t.main)&&await new Promise((e=>setTimeout(e,1200))),$(t.main)&&$("#d .at").setAttribute("style",`height : ${window.getComputedStyle($(t.main)).height}; margin: 1em 0 0`),$Arr("#fn [id]").forEach((e=>!t.main.match(e.id)&&n.push(e.id))),n.map((e=>(i=a.indexOf(e),-1!=i&&a.splice(i,1)))),a.map((e=>none(`${t.body} .at .${e}`))),e=$("#da"),cl(t.page,"fq",$("#de")||e),cl(`${t.body} .cn .co`,"fh",e),e){let[i,a]="Submit"==e.querySelector(".gu").innerText?["db","dc"]:["dc","db"];cl(`${t.body} .at .${i}`,"fh",0),none(`${t.body} .at .${i}`,0),cl(`${t.body} .at .${a}`,"fh",0),none(`${t.body} .at .${a}`),setTimeout((()=>cl(`${t.body} .at .${i}`,"fh")),600);let n=t.hlter["db"==i?0:1],s=t.hlter["db"!=i?0:1];t.els.map(((e,i)=>cl(`${t.body} .cn .co .${e}`,s[i],0)|cl(`${t.body} .cn .co .${e}`,n[i])))}n.map((e=>none(`${t.body} .at .${e}`,0)|(el=$(`#fn #${e}`),el&&evt(el,"mouseover",(()=>cl(t.page,`fo ${e}`)))|evt(el,"click",(()=>(/(i|e)m/i.test(e)&&cl(t.page,"fq"))|cl(t.page,`fo ${e}`,0)|t.show()))|evt(el,"mouseleave",(()=>cl(t.page,`fo ${e}`,0))))))}},start:async function(){await base.check(0),await base.online($(".e .d"),"Initializing..."),firebase.initializeApp({apiKey:"AIzaSyCQlUfWw68F-AeUrsHfEUTm7LkBUkhHxbE",authDomain:"element-remover.firebaseapp.com",projectId:"element-remover",databaseURL:"https://element-remover.firebaseio.com",storageBucket:"element-remover.appspot.com",messagingSenderId:"524051898519",appId:"1:524051898519:web:9e8f4351873618e97309d2",measurementId:"G-4CJK789HHC"}),navigator.userAgentData&&!navigator.userAgentData.mobile?cS("body",(()=>($("main").innerHTML=body,void 0|this.auth.init()))):popup("Web Extension is Not Supported")},auth:{auth:null,logedIn:null,init:async function(){await base.check(1),this.auth=firebase.auth(),evt(".v","click",(()=>(null==this.logedIn&&(this.logedIn=!0))|cl("#j","fg")|setTimeout((()=>none("#i")),500))),evt("#p","click",(()=>this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider).then((e=>(this.logedIn=!1)|$(".v").click()|$("body").appendChild(create("data","idToken",e.credential.idToken)))).catch((e=>eh(e))))),evt("#t","click",(()=>$(".v").click())),hide(["#i",".z .n"]),[".bl .bm",".bp .by .bz",".bp .bq .br",".bp .bs",".al .au .aw","#az","#bb"].map((e=>$Arr(e).forEach((e=>e.setAttribute("role","button"))))),cursor.init(),this.in()},in:async function(){let e=this;e.auth.onAuthStateChanged((async t=>{cl("main","a",0);let i=!0;if(ref.log){let[a,n]=ref.log.split(":");"in"!=a||t?"out"===a&&t&&e.out():($(".e").remove(),setTimeout((()=>none("#j",0)|reveal(["#i"])),200),i=await wfi((()=>null!=e.logedIn&&{log:e.logedIn}),"User Loged In","User to Login").then((e=>e.log)))}if(i){none("#i");let e=t?{card:"member",id:t.uid,email:t.email,trust:t.emailVerified}:{card:"user",id:null,email:null,trust:0};await app.setUser(e),el=$(".e .d"),el&&(el.innerText="Getting User Data..."),app.user.w&&none(".z .ac",0);let i="user"!==app.user.card,a=(new Date).getHours();i&&popup(`${a>22||a<5?"It's time to Sleep":a<12?"Good Morning":a<18?"Good Afternoon":"Good Evening"}, ${title(t.displayName)}`,"#e2bcb7"),await base.check(2),db=firebase.firestore().collection("account").doc(app.user.card).collection(app.user.id),snap=db.onSnapshot((e=>e.docChanges().forEach((e=>void 0|app.update(e.doc.data())))),(e=>{})),await wfi((()=>(el=$(".e .d"),el&&(el.innerText="Getting User Data..."),!app.whole)),"User Data Got!","User Data"),app.activate()}}))},out:function(){return this.auth.signOut().then((()=>popup("You loged Out!","#fca3cc")|window.location.assign("?log=in"))).catch((e=>eh(e)))}},activate:()=>{let t=["aj","ak","al","am","d","ao","ap"],i=["account","statistics","tools","privacy","info","pro","dev"],n=".ad .ah",s=".aq .l .ar";const o=()=>setTimeout((()=>none(".z")|reveal(n,200)|setTimeout((()=>$("#n"+(a=i.reduce(((e,t,i)=>t==ref.s?i:e+0),-1),t[a>0?a:0])).click()),200*t.length)),500);hide([n,s+">*"]),hide([s,s+">*"]),$Arr(`${s}`).forEach(((e,i)=>e.id=t[i])),$Arr(`${n}>*`).forEach(((e,i)=>e.id="n"+t[i])),app.extension(),evt("#az","click",(e=>(cl(e.target,"ew"),setTimeout((()=>cl(e.target,"ew",0)),400)|navigator.clipboard.writeText(e.target.parentNode.firstElementChild.innerText)))),$Arr(".bc .bd .bi").forEach(((e,t)=>t&&evt(e,"click",(e=>"Get"==e.target.innerText&&$(`.ad button:nth-child(${5+t})`).click())))),evt("#nam","click",(()=>app.privacy())),evt("#ap .er","click",(()=>toggle("#ap .l","gc"))),$Arr(`${n}>*`).forEach((e=>evt(e,"click",(e=>{let t=e.target,i=Array.from(t.parentNode.children).indexOf(t),a=$(`${n} .bn`);if((a&&Array.from(t.parentNode.children).indexOf(a))!=i){a&&cl(`${n} .bn`,"bn",0),cl(t,"bn");let e=window.innerHeight;$("style#f").innerHTML=`:root {--ty : translateY(${e*-i}px); --ih:${e}px;}`,hide([s,s+">*"]),reveal(`${s}:nth-child(${++i})`)}})))),e=$(".e"),e&&e.remove(),ref.s?o():(evt(".aa","click",(()=>{$(".aa").style=`transform: translateY(${-window.innerHeight}px);`,o()})),reveal(".z .n",500))},extension:async function(){let e=["ak","d"];evt("#nao","click",promote),e.map((e=>(el=$(`#${e} .n>.as`),cl(el,"fj")|el.appendChild(inh({n:"&nbsp;",i:"Checking for Extension...",r:"&nbsp;"})))));let t=await wfi((()=>$("html.exinstalled")?1:0),"Extension Present!","Extension",2e3,10);$("html").removeAttribute("class"),t?e.map(((e,t)=>evt("#n"+e,"click",t?()=>app.info.capture():()=>app.statistics())|inhe(`#${e} .n>.as`,{r:["Fetching Statistics From","Waiting For"][t],n:["Extension","User to click on Element Remover Extension Icon"][t],i:["Currently in Development!","To Start Live Demo Do a Click on the Icon"][t]}))):e.map((e=>inhe(`#${e} .n>.as`,{r:"Redirecting to",n:"extension-store/element-remover",l:"https://microsoftedge.microsoft.com/addons/detail/element-remover/dodpaldpagolkomadahoenlolmighoog",i:"Would you Please Install the Element Remover Extension First"}))),"d"===ref.s&&app.info.capture(),$Arr(".b").forEach((e=>evt(e,"mouseover",(()=>setTimeout((()=>e.querySelector("a").click()),3e3)))))},send:async(e,t=1,i=1)=>{let a={[e]:t};return i&&(a.user=app.su),await base.online(),await fetch(`${ref.svr}/?d=${JSON.stringify(a)}`,{method:"POST"}).then((e=>e.json()||e.text())).then((e=>e))}},adClicked=()=>app.send("pro","0");function onYouTubeIframeAPIReady(){app.tasks.watchBox.ready(player)}const base={js:["app","auth","firestore","analytics"],init:async function(){$("style#f").innerHTML=`:root{--ty:translateY(0px);--ih:${window.innerHeight}px;}`,this.js.map(((e,t)=>(base[e]=!1,cS(e,(function(){base[e]=!0,this.remove()}),`https://www.gstatic.com/firebasejs/8.5.0/firebase-${e}.js`,t&&!0)))),app.start()},check:async function(e){return 0==this[e="number"==typeof e?this.js[e]:e]&&await wfi((()=>this[e]),`Firebase ${e} is ready!`,`Firebase ${e}`)},online:async function(e,t){return navigator.onLine?(e&&(e.innerText=t),!0):(e&&(e.innerText="Waiting for Internet..."),await wfi((()=>navigator.onLine),"Base is Active","Internet",1e3))}};base.init();
+// Common Variables
+let db, player,
+  ref = {
+    svr: "https://element-remover.herokuapp.com"
+  };
+
+const exts = ["https://microsoftedge.microsoft.com/addons/detail/dodpaldpagolkomadahoenlolmighoog"];
+let which = 0;
+window.location.href.split(/[&?]/).filter(e => e.match("=")).map(e => (o = e.split("="), (ref[o[0]] = o[1])))
+const wfi = async (f, s = "Something Got!", w = "Something", ms = 500, c = -1) => (r = await new Promise(r => setTimeout(r, ms)), (res = f(), res || c == 0 ? (console.log(s), res) : (console.log("Waiting for", w + "..."), await wfi(f, s, w, ms, c - 1))));
+console.log(ref);
+
+// Basic Functions
+const $ = e => typeof e === "string" ? document.querySelector(e) : e,
+  $Arr = e => document.querySelectorAll(e),
+  $i = e => $("#" + e),
+  $p = (e, c) => c == 0 ? e : $p($(e).parentNode, c - 1),
+  cl = (el, cls, w = 1) => $(el) && (l = $(el).classList,
+    l && cls.replace(/ +/g, " ").split(" ").map(c => w ? l.add(c) : l.remove(c))),
+  evt = (el, w, func, aor = 1) => (e = $(el), aor ? e.addEventListener(w, func) : e.removeEventListener(w, func)),
+  reveal = (el, t = 400, s = " ") => $Arr(el + s + '.fr').forEach((e, i) => setTimeout(() => {
+    cl(e, 'fs');
+    cl(e, 'fr', 0);
+    setTimeout(() => cl(e, 'fs', 0), 500);
+  }, t * i)),
+  hide = arr => arr.map(e => $Arr(`${e}>*`).forEach(el => cl(el, 'fr'))),
+  none = (el, c = 1) => cl(el, 'aa', c),
+  vanish = (id, con = 1) => {
+    let el = $(id)
+    cl(el, 'fs', !con);
+    cl(el, 'fr', con);
+    el.style.height = el.height + "px";
+    setTimeout(() => cl(el, 'gk', con) | (el.style.height = 0) | el.removeAttribute("style"), 500);
+  },
+
+  promote = () => !app.pro && app.tasks.promo() | evt("#n" + 'ak', "click", promote, 0),
+
+  create = (tag, cl, text = "", html = 0, et, func) => {
+    el = document.createElement(tag)
+    el.setAttribute("class", cl)
+    el[html ? "innerHTML" : "innerText"] = text
+    et && evt(el, et, func);
+    return el
+  },
+  cS = (id, func, src = null, async = false, ano = false) => {
+    e = document.createElement("script"),
+      e.id = id,
+      e.src = src ? src : `https://element-remover.github.io/assets/js/${id}.js`,
+      e.onload = func;
+    async &&(e.async = true);
+    ano && (e.crossOrigin = "anonymous")
+    $("head").appendChild(e)
+  },
+  toggle = (el, c) => cl(el, c, !$(el).classList.contains(c)),
+  time = [2592E5, 5184E5, 72576E5],
+  inh = o => create("div", 'fx', `<div class='eo'><span class='ep'></span><div class='o'>${o.r}</div><a ${o.l ? `href="${o.l}"` : ``}>${o.n}</a><div class='bw'>${o.i}</div></div>`, 1),
+  inhe = (e, o) => {
+    let ex = $(`${e} .eo`)
+    ex.querySelector('.o').innerText = o.r || " ";
+    (a = ex.querySelector('a'), (o.l ? (a.href = o.l) : a.removeAttribute("href")) | (a.innerText = o.n || " "))
+    ex.querySelector('.bw').innerText = o.i || " ";
+  },
+
+  // Logging
+  log = (text, obj = "", color = 0, design = 0) => console.log(...obj != "" || color || design ? [`%c${["", "-->", "~~>", "==>", "=>>", "*", "  >="][design]} ${text}`,
+    `color : ${["white", "green", "yellowgreen", "yellow", "blue", "orange", "pink", "red", "springgreen", "cyan", "darkorchid"][color]}`, obj
+  ] : [text]),
+  popup = (text, color) => {
+    if (!$('.gt')) {
+      let mesbox = create("div", 'fm');
+      let mes = create("div", 'f l gt fk', text)
+
+      evt(mesbox, "mouseover", () => setTimeout(() => cl('.gt', 'fl', 0), 50))
+      mesbox.appendChild(mes)
+      $('main').appendChild(mesbox)
+    }
+
+    let el = $('.gt')
+    el.innerHTML = `<span>${text}</span>`
+    color && (el.style.background = color);
+    cl(el, 'fk fl', 0)
+    setTimeout(() => cl(el, 'fk fl'), 50)
+  },
+  title = e => e.split(/-|\/| /).map(e => e.replace(/(\w)(?=\w{2,})/, e => e.toUpperCase())).join(' '),
+  eh = err => console.log(err) | popup(title(err.code)),
+  cursor = {
+    d: 9,
+    x: 0,
+    y: 0,
+    ex: (window.innerWidth / 2),
+    ey: (window.innerHeight / 2),
+    dot: $('#eq'),
+    back: $('#er'),
+
+    init: function () {
+      this.events();
+      this.animate();
+    },
+
+    events: function () {
+      var self = this;
+
+      ["a", "button", '.be', '.gm', 'img', `[role="button"]`].map(e => $Arr(e).forEach(el =>
+        evt(el, "mouseover", () => cl(el, 'czk') | self.toggleCS()) |
+        evt(el, "mouseout", () => cl(el, 'czk', 0) | self.toggleCS(0))
+      ))
+
+      evt(document, "mousemove", function (e) {
+        self.toggleCV();
+
+        self.ex = e.clientX;
+        self.ey = e.clientY;
+        self.dot.style.top = self.ey + "px";
+        self.dot.style.left = self.ex + "px";
+      });
+      evt(document, "click", () => $('.czk') && self.toggleCV(0) | setTimeout(() => self.toggleCS(), 400))
+      evt(document, "mousedown", () => self.toggleCS())
+      evt(document, "mouseup", () => self.toggleCS(0))
+      evt(document, "mouseenter", () => self.toggleCV())
+      evt(document, "mouseover", e => e.target.nodeName == "IFRAME" && self.toggleCV(0))
+      evt(document, "mouseleave", () => self.toggleCV(0))
+    },
+
+    animate: function () {
+      var s = this;
+      const val = (s, e) => (!(s + "").match(/e/) ? s : e) + "px";
+
+      s.x += (s.ex - s.x) / s.d;
+      s.y += (s.ey - s.y) / s.d;
+      s.back.style.top = val(s.y, s.ey);
+      s.back.style.left = val(s.x, s.ex);
+
+      requestAnimationFrame(this.animate.bind(s));
+    },
+
+    toggleCS: function (con = 1) {
+      var self = this;
+      cl(self.dot, 'gs', con);
+      cl(self.back, 'gs', con);
+    },
+
+    toggleCV: function (con = 1) {
+      var self = this;
+      cl(self.dot, 'gr', con);
+      cl(self.back, 'gr', con);
+    }
+  },
+
+  // Tools Events and Object
+  data = obj => {
+    const f = db.doc("data")
+    const get = async () => await f.get()
+    const update = () => f.update({
+      tools: obj
+    }).catch(err => eh(err))
+
+    return {
+      get,
+      update
+    }
+  },
+  ccc = () => app.pro && cl($p('#cg', 4), 'fz', [...app.tools.get()].splice(0, 2).map(e => parseInt(e)).reduce((a, b) => a + b) == 0),
+  ppt = e => cl($p(e.target, 4), 'fz', !app.pro),
+  tsu = async () => await base.online() | data(app.tools.get()).update();
+
+// App Initilized
+const app = {
+  isExt: window.location.protocol !== "http:",
+  su: null,
+  ads: null,
+  user: null,
+  data: null,
+  pro: 0,
+  whole: true,
+  init: function (user, data) {
+    user = user || this.user
+    data = data || this.data
+
+    // console.log(user, data, this.ads);
+    this.pro = data.plan;
+    this.account.init(user, data)
+    this.tools.init(data.tools);
+    this.tasks.init(this.ads);
+    console.log("App Initialized.");
+  },
+  setUser: async function (u) {
+    let c = u.member
+    c && (this.su = [u.card, u.id].join(":"));
+    (r = await app.send("id", c ? false : true, c ? 1 : 0), (r.w && (u.w = r.w), !c && (u.id = r.id)));
+    this.user = u
+    this.account.set(u);
+    !c && (this.su = [u.card, u.id].join(":"));
+  },
+  update: function (obj) {
+    let con = Object.keys(obj).indexOf("ad") != -1
+    if (con) {
+      this.ads = obj;
+      !this.whole && this.tasks.init(obj)
+    } else {
+      if (this.data && !this.whole) {
+        this.data.plan != obj.plan ? app.init(null, obj) : this.tools.init(obj.tools)
+      }
+      this.data = obj
+
+    }
+    (this.ads && this.data) && this.whole && this.init() | (this.whole = false)
+  },
+
+  account: {
+    keys: ["id", "email"],
+    arr: ['au', 'aw'],
+    init: function (user, data) {
+      this.set(user);
+      console.log("* Account Plan :", app.pro);
+      this.timer.stop()
+      setTimeout(() => app.pro && this.timer.init(data), 1300)
+    },
+    set: function (user) {
+      this.arr.map((e, i) => $(`.at.${e}`).innerText = user[this.keys[i]])
+      none('.ar.aw', !user.email)
+      none('.x.ax', !user.trust)
+
+      $Arr('.ay .az .be').forEach((el, i) => {
+        cl(el.parentNode, 'bj', i == app.pro);
+        text = i < app.pro ? "Unlocked" : i > app.pro ? "Get" : "";
+        el.innerText = i ? text : "Unlocked";
+      });
+      $('.bf').innerText = `Ends in ${(app.user.member ? 6 : 3) + " Days"}`
+    },
+    timer: {
+      plan: null,
+      from: null,
+      button: null,
+      member: null,
+      s: 0,
+      init: function (data) {
+        this.button = $('.ay .az.bj .be');
+        this.member = $('#do');
+        this.plan = data.plan;
+        this.from = data.from;
+        this.start();
+        this.s = 0;
+        console.log("  >= Timer :\n", data);
+      },
+      start: async function () {
+        let self = this;
+        if (this.plan != 0 && this.from != null) {
+          let diff = Math.abs(new Date(this.from) - new Date()),
+            end = time[this.plan],
+            text;
+          if (diff < end) {
+            text = this.getms(end - diff);
+            if (!this.s)
+              setTimeout(() => this.start(), 1000)
+            else
+              return (self.s = 0, console.log("Timer Stopped!"));
+          } else {
+            text = "Expired"
+          }
+          this.button.innerText = text
+          this.member.innerHTML = text[0] === "E" ? `<no class='gg'>Expired</no>` : text.replace(/ /g, "").split(":").reverse().map((e, i) => `<no>${e}</no><span>${["second", "minute", "hour", "day"][i] + (ep = parseInt(e), ep != 1 && ep ? "s" : "")}</span> `).reverse().reduce((a, b) => a + b)
+          text[0] === "E" && ("",
+
+
+            await app.send("") | $("#n" + 'ak').click()
+
+          )
+        }
+      },
+      stop: function () {
+        let self = this;
+        self.s = 1;
+        setTimeout(() => (self.s = 0), 1150);
+      },
+      getms: ms => {
+        let t = [86400, 3600, 60, 1, 0].map(e => e * 1000),
+          o = [];
+        const a = (e, r) => {
+          let l = parseInt(e),
+            i = t[r];
+          return i ? (l >= i || o.length) ? (o.push((ei = parseInt(l / i) + "", ei).length == 1 ? "0" + ei : ei), a(l % i, ++r)) : a(l, ++r) : 0
+        };
+        return a(ms, 0), o.length ? o.join(" : ") : "00"
+      }
+    }
+  },
+  tools: {
+    arr: ['#ca', '#cc', '#cd', '#ce', '#cf', '#cg'],
+    values: "000000",
+    init: function (obj) {
+      this.setupEvents(0);
+      this.setupEvents(1);
+      this.set(obj);
+      console.log("* Tools Updated :", obj);
+    },
+    set: function (v) {
+      return (typeof v == "string" ? v : this.values).split("").splice(0, 6).map((e, i) => (c = parseInt(e), $(app.tools.arr[i]).checked = i < 4 ? c : app.pro ? c : 0)).reduce((a, b) => a.toString() + b)
+    },
+    get: function () {
+      return this.arr.map(e => $(e).checked ? "1" : "0").reduce((a, b) => a + b)
+    },
+    setupEvents: function (w) {
+      let arr = [...this.arr];
+      arr.splice(0, 2).map(el => evt(el, "click", ccc, w))
+      arr.splice(2).map(el => evt(el, "click", ppt, w))
+      this.arr.map(el => (w && $(el).click()) | evt(el, "click", tsu, w))
+    }
+  },
+  tasks: {
+    keys: ["ad", "watch", "surf"],
+    values: [3, 15, 30],
+    div: ['#dv', '#dw', '#dx'],
+    con: ['dd', 'df', 'dl'],
+    init: async function (obj) {
+      await base.online();
+      this.blocks();
+      this.set(obj);
+      Object.values(obj).reduce((a, b) => a + b) === 0 && app.send("");
+
+      console.log("* Tasks :", obj);
+    },
+    set: function (obj) {
+      return this.keys.map((el, i) => {
+        let e = obj[el] != undefined ? obj[el] : this.values[i];
+        (i != 1 || !$('.gh')) && vanish(`.${this.con[i]}`, !e);
+        this.values[i] = e;
+        $(this.div[i]).innerText = app.pro ? "" : e ? `${e + (i ? "s" : "")} left` : ""
+        cl($(this.div[i]).parentNode, 'gp', !e || app.pro);
+        return e
+      })
+    },
+
+    promo: async function () {
+      let cv = app.ads.watch,
+        cw = app.ads.surf;
+
+      // For Ads
+      app.ads.ad && (async () => {
+        console.log("Creating Ads");
+        await wfi(() => earn.active, `Ads are ready to Show!`, `Google Ads`);
+        [{
+          n: "alpha",
+          s: "2153949148"
+        }, {
+          n: "beta",
+          s: "8811706890"
+        }, {
+          n: "gama",
+          s: "9550073496"
+        }, {
+          n: "deta",
+          s: "5793827168"
+        }].map(e => ($('#de').appendChild(create("div", 'dv', `<!-- ${e.n} --><ins class="adsbygoogle" style="display:block" data-ad-client="${earn.id}" data-ad-slot="${e.s}" data-ad-format="auto" data-full-width-responsive="true"></ins></div>`, true), ""))).map(e => (adsbygoogle = window.adsbygoogle || []).push({}))
+      })()
+
+      if (cv || cw) {
+        let res = await app.send("promo");
+
+        if (cv) {
+          let video = res.watch[0]
+          cl('.df', 'gk fr', 0);
+          $('#dg iframe').src = `https://www.youtube.com/embed/${video.src}?enablejsapi=1&modestbranding=1`
+          $('#dg .di').innerText = video.views
+          $('#dg .dj').innerText = video.by
+          $('#dg .dk').innerText = video.paid
+          this.watchBox.init(video.id);
+        }
+
+        if (cw) {
+          cl('.dl', 'gk fr', 0);
+          $('#dm').innerHTML = "";
+          res.webs.map(site => $('#dm').appendChild(create("div", 'gl',
+            `<div class='gm'><img data-src="https://element-remover.github.io/assets/static/svg/logo.svg" src="https://ik.imagekit.io/downlaod/${site.img}?tr=w-600h-300" alt="${site.info}"></div><a href="https://${site.link}/?ref=element-remover-${app.su}&svr=${ref.svr}&id=${site.id}"  alt="${site.info}'s Website" target="_blank"` +
+            `class='gn'></a><div class='bc'><div class='da'><div class='z'>${site.title}</div></div>${site.paid ? `<div class='go'><span class='dk'></span></div>` : ``}</div>`, true)))
+        }
+      }
+    },
+    watchBox: {
+      evt: ['unstarted', 'gj', 'gh', 'gi', 'buffering', 'cued'],
+      state: 'aa',
+      wc: 0,
+      key: "",
+      init: function (id) {
+        this.id = id
+        cS('iframe-demo', () => console.log("Watch Box Inite."), "https://www.youtube.com/iframe_api")
+      },
+      ready: function (v) {
+        v = new YT.Player('dh', {
+          events: {
+            "onReady": () => console.log("Player Ready") | this.watch(),
+            "onStateChange": state => (w = this.evt[state.data + 1], (this.state = w) | cl('#dg', w) | cl('#dg', this.evt.filter(e => e != w).join(" "), 0)),
+            "onError": () => cl('#dg', 'error')
+          }
+        });
+      },
+      watch: async function () {
+        let self = this;
+        if (self.state == 'gh') {
+          console.log(self.wc);
+          !self.key && (self.key = app.send("pro", `1:${self.id}`))
+          if (self.wc < 16) {
+            let l = 15 - self.wc;
+            ++self.wc;
+            l == 0 && await app.send("pro", `1:${self.id}:${(await Promise.all([self.key]))[0].key}`);
+            app.tasks.set({
+              watch: l
+            })
+          } else return self.none()
+        }
+        setTimeout(() => self.watch(), 1000)
+      },
+      none: function () {
+        return this.state == 'gi' ? vanish('.df') : setTimeout(() => this.none(), 2000);
+      }
+    },
+
+    blocks: function () {
+      app.pro && cl('#ak > .i > .ao', 'ex', 0);
+      cl('.db', 'gf', app.pro);
+      none('#da .dn', !app.pro)
+      none('.dc', app.pro);
+      none('.dp', app.pro == 2);
+      $('.db').innerHTML = app.pro ? `<span class='ar'>Pr${app.pro == 1 ? "o" : "emium"} Membership Activated</span>` : `Complete Tasks to Become Pro Member for ${(app.user.member ? 6 : 3) + " Days"}.`
+    }
+  },
+  statistics: function () {
+    !$("script#stats") && cS("stats", () =>
+
+
+      $("body").appendChild(create("data", "stats")) | wfi(() => (e = $("data.stats").innerText, e != "" ? ($("data.stats").remove() | design.init(JSON.parse(e).stats), true) : false), "Statistics Got!", "Statistics from Extension", 2000, -1)
+
+    );
+    console.log("Currently in Development!");
+  },
+
+  info: {
+    count: 0,
+    area: false,
+    body: '#bw DIV.i .ao',
+    btns: ['cq', 'cr', 'cs', 'cu', 'ct', 'cx', 'cy', 'cz'],
+    main: '#hd',
+    els: ['cj', 'ck', 'bj'],
+    hlter: [
+      ['gy', 'gx', 'gz'],
+      ['hb', 'ha', 'hc']
+    ],
+    capture: async function () {
+      let self = this;
+      if (!self.count) {
+        self.count = 1;
+        let exa = await wfi(() => !self.area ? (el = $('#gb'), el ? (self.area = true, el) : false) : false, "Exarea Got!", "User Click")
+
+        self.page = $(`${self.body} .bg`);
+        self.page.insertBefore(exa, $(`${self.body} .ap`))
+        cl(self.body, 'fw', 0);
+        $(`${self.body} .fx`).remove();
+
+        self.show()
+      }
+    },
+    show: async function () {
+      let self = this,
+        btns = [...self.btns],
+        hbtns = [],
+        submit;
+
+      !$(self.main) && await new Promise(r => setTimeout(r, 1200));
+      $(self.main) && $('#bw .ap').setAttribute("style", `height : ${window.getComputedStyle($(self.main)).height}; margin: 1em 0 0`);
+      $Arr('#gb ' + "[id]").forEach(e => !self.main.match(e.id) && hbtns.push(e.id));
+      hbtns.map(e => (i = btns.indexOf(e), i != -1 && btns.splice(i, 1)));
+      btns.map(el => none(`${self.body} .ap .${el}`));
+      submit = $('#cu');
+      cl(self.page, 'ge', $('#cy') || submit);
+      cl(`${self.body} .ch .ci`, 'fs', submit);
+      if (submit) {
+        let [bts, bth] = submit.querySelector('.hi').innerText == "Submit" ? ['cv', 'cw'] : ['cw', 'cv'];
+        cl(`${self.body} .ap .${bts}`, 'fs', 0)
+        none(`${self.body} .ap .${bts}`, 0);
+        cl(`${self.body} .ap .${bth}`, 'fs', 0)
+        none(`${self.body} .ap .${bth}`);
+        setTimeout(() => cl(`${self.body} .ap .${bts}`, 'fs'), 600);
+        let arr = self.hlter[bts == 'cv' ? 0 : 1],
+          arr2 = self.hlter[bts != 'cv' ? 0 : 1];
+        self.els.map((e, i) => cl(`${self.body} .ch .ci .${e}`, arr2[i], 0) | cl(`${self.body} .ch .ci .${e}`, arr[i]))
+      }
+      hbtns.map(e => none(`${self.body} .ap .${e}`, 0) | (el = $(`#gb #${e}`),
+        el && evt(el, "mouseover", () => cl(self.page, `gc ${e}`)) |
+        evt(el, "click", () => (/(i|e)m/i.test(e) && cl(self.page, 'ge')) |
+          cl(self.page, `gc ${e}`, 0) | self.show()) |
+        evt(el, "mouseleave", () => cl(self.page, `gc ${e}`, 0))))
+    }
+  },
+
+
+  start: async function () {
+    await base.check(0)
+    await base.online($('.en .bw'), "Initializing...");
+
+    firebase.initializeApp({
+      apiKey: "AIzaSyCQlUfWw68F-AeUrsHfEUTm7LkBUkhHxbE",
+      authDomain: "element-remover.firebaseapp.com",
+      projectId: "element-remover",
+      databaseURL: "https://element-remover.firebaseio.com",
+      storageBucket: "element-remover.appspot.com",
+      messagingSenderId: "524051898519",
+      appId: "1:524051898519:web:9e8f4351873618e97309d2",
+      measurementId: "G-4CJK789HHC"
+    });
+ (navigator.userAgentData && !navigator.userAgentData.mobile) ? this.auth.init() : popup("Web Extension is Not Supported") | ($(".downloading").innerHTML = "");
+  },
+  auth: {
+    auth: null,
+    logedIn: null,
+    init: async function () {
+      await base.check(1)
+      this.auth = firebase.auth();
+      // Login Events
+      evt('.r', "click", () => (this.logedIn == null && (this.logedIn = true)) | cl('#e', 'fr') | setTimeout(() => none('#d'), 500))
+
+      evt('#k', "click", () => this.auth
+        .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+        .then(res => (this.logedIn = false) | $('.r').click() | $("body").appendChild(create("data", "idToken", res.credential.idToken)))
+        .catch(error => eh(error)))
+
+      evt('#p', "click", () => $('.r').click())
+      hide(['#d', '.v .i']);
+      ['.bh .bi', '.bl .bu .bv', '.bl .bm .bn', '.bl .bo', '.ah .aq .as', '#av', '#ax'].map(b => $Arr(b).forEach(e => e.setAttribute("role", "button")))
+      cursor.init();
+      this.in();
+    },
+    in: async function () {
+      // Authorization
+      let self = this;
+      self.auth.onAuthStateChanged(async su => {
+        let w = 0;
+        cl('main', 'c', 0);
+
+        let cdl = true;
+        if (ref.log) {
+          let [what, token] = ref.log.split(":");
+          if (what == "in" && !su) {
+            cdl = ("",
+
+
+              ($('.en').remove() | setTimeout(() => none('#e', 0) | reveal(['#d']), 200), await wfi(() => self.logedIn != null && {
+                log: self.logedIn
+              }, "User Loged In", "User to Login").then(res => res.log))
+
+            )
+          } else if (what === "out" && su) {
+
+            self.out();
+          }
+        }
+
+        if (cdl) {
+          none('#d')
+
+          let u = !su ? {
+            card: "user",
+            member: false,
+            id: null,
+            email: null,
+            trust: 0
+          } : {
+            card: "member",
+            member: true,
+            id: su.uid,
+            email: su.email,
+            trust: su.emailVerified
+          };
+          await app.setUser(u);
+          console.log(`User : \n`, app.user);
+          console.log("Getting User Info...");
+          (el = $('.en .bw'), el && (el.innerText = "Getting User Data..."));
+          app.user.w && none('.v .aa', 0);
+
+          let h = new Date().getHours();
+          app.user.member && popup(`${h > 22 || h < 5 ? "It's time to Sleep" : (h < 12 ? "Good Morning": h < 18 ? "Good Afternoon" : "Good Evening")}, ${title(su.displayName)}`, "#e2bcb7");
+
+          await base.check(2)
+          db = firebase.firestore().collection("account").doc(app.user.card).collection(app.user.id)
+
+          // For Changes
+          snap = db.onSnapshot(snap => snap.docChanges().forEach(change => console.log(change.type) | app.update(change.doc.data())), err => console.log(err));
+
+          await wfi(() => ((el = $('.en .bw'), el && (el.innerText = "Getting User Data...")), !app.whole), "User Data Got!", "User Data")
+          app.activate();
+        }
+      })
+    },
+    out: function () {
+      return this.auth.signOut()
+        .then(() => popup("You loged Out!", "#fca3cc") | window.location.assign("?log=in"))
+        .catch(err => eh(err))
+    }
+  },
+  activate: () => {
+    let slides = ['af', 'ag', 'ah', 'ai', 'bw', 'ak', 'al'],
+      sides = ["account", "statistics", "tools", "privacy", "info", "pro", "dev"],
+      wsc = '.v .i',
+      nav = '.ab .ac',
+      sc = '.am .g .an';
+    const opening = () => setTimeout(() => none('.v') | reveal(nav, 200) | setTimeout(() => $(`#n` + (a = sides.reduce((a, b, i) => b == ref.s ? i : a + 0, -1), slides[a > 0 ? a : 0])).click(), 200 * slides.length), 500);
+
+    // Default Main Things
+    hide([nav, sc + ">*"]);
+    hide([sc, sc + ">*"]);
+    $Arr(`${sc}`).forEach((e, i) => (e.id = slides[i]));
+    $Arr(`${nav}>*`).forEach((e, i) => (e.id = "n" + slides[i]));
+
+    app.extension()
+    evt('#av', "click", evt => (cl(evt.target, 'fh'), setTimeout(() => cl(evt.target, 'fh', 0), 400)) | navigator.clipboard.writeText(evt.target.parentNode.firstElementChild.innerText));
+    $Arr('.ay .az .be').forEach((el, i) => i && evt(el, "click", e => e.target.innerText == "Get" && $(`.ab button:nth-child(${5 + i})`).click()))
+    evt('#n' + 'ai', "click", () => !$("script#privacy") && cS("privacy", () => policies && ($('#ai .ao').innerHTML = policies)))
+    evt('#al .el', "click", () => toggle('#al .g', 'gq'))
+    $Arr(`${nav}>*`).forEach(e => evt(e, "click", evt => {
+      let el = evt.target,
+        pos = Array.from(el.parentNode.children).indexOf(el),
+        selected = $(`${nav} .bj`),
+        selectpos = selected && Array.from(el.parentNode.children).indexOf(selected);
+      if (selectpos != pos) {
+        selected && cl(`${nav} .bj`, 'bj', 0);
+        cl(el, 'bj');
+        let ih = window.innerHeight;
+        $('style#a').innerHTML = `:root {--ty : translateY(${ih * -(pos)}px); --ih:${ih}px;}`
+        hide([sc, sc + ">*"]);
+        reveal(`${sc}:nth-child(${(++pos)})`);
+      }
+    }));
+
+    (e = $('.en'), e && e.remove())
+    console.log("App Activated");
+
+    ref.s ? opening() : evt('.w', "click", () => {
+      $('.w').style = `transform: translateY(${-window.innerHeight}px);`;
+      opening();
+    }) | reveal(wsc, 500);
+  },
+  extension: async function () {
+    console.log("Checking for Extension...");
+
+
+
+      let arr = ['ag', 'bw'];
+      evt("#n" + 'ak', "click", promote);
+      arr.map(e => (el = $(`#${e} .i>.ao`), cl(el, 'fw') | el.appendChild(inh({
+        n: "&nbsp;",
+        i: "Checking for Extension...",
+        r: "&nbsp;"
+      }))))
+      let res = await wfi(() => $("html.exinstalled") ? 1 : 0, "Extension Present!", "Extension", 2000, 10);
+      $('html').removeAttribute("class");
+      res ? arr.map((e, i) => evt("#n" + e, "click", i ? () => app.info.capture() : () => app.statistics()) |
+          inhe(`#${e} .i>.ao`, {
+            r: ["Fetching Statistics From", "Waiting For"][i],
+            n: ["Extension", "User to click on Element Remover Extension Icon"][i],
+            i: ["Currently in Development!", "To Start Live Demo Do a Click on the Icon"][i]
+          })) :
+        arr.map(e => inhe(`#${e} .i>.ao`, {
+          r: "Redirecting to",
+          n: "extension-store/element-remover",
+          l: "https://microsoftedge.microsoft.com/addons/detail/element-remover/dodpaldpagolkomadahoenlolmighoog",
+          i: "Would you Please Install the Element Remover Extension First",
+        }))
+
+      ref.s === 'bw' && app.info.capture()
+
+
+    $Arr('.eo').forEach(e => evt(e, "mouseover", () => setTimeout(() => e.querySelector('a').click(), 3000)));
+  },
+  send: async (key, value = 1, user = 1) => {
+    let obj = {
+      [key]: value
+    };
+    user && (obj.user = app.su)
+    console.log("==>", obj)
+    await base.online();
+    return await fetch(`${ref.svr}/?d=${JSON.stringify(obj)}`, {
+        method: "POST"
+      }).then(res => res.json() || res.text())
+      .then(res => (console.log("<==", res), res));
+  }
+};
+
+
+function onYouTubeIframeAPIReady() {
+  console.log("Ready");
+  app.tasks.watchBox.ready(player)
+}
+
+const base = {
+  js: ["app", "auth", "firestore", "analytics"],
+  init: async function () {
+    $('style#a').innerHTML = `:root{--ty:translateY(0px);--ih:${window.innerHeight}px;}`
+    cS("body", () => ($("main").innerHTML = body, console.log("Body Got!")))
+
+    this.js.map((e, i) => (base[e] = false, cS(e, function () {
+      base[e] = true;
+      this.remove()
+    }, `https://element-remover.github.io/assets/static/lib/${e}.js`, i && true)));
+    app.start();
+  },
+  check: async function (e) {
+    e = typeof e === "number" ? this.js[e] : e
+    return this[e] == false && await wfi(() => this[e], `Firebase ${e} is ready!`, `Firebase ${e}`)
+  },
+  online: async function (el, next) {
+    return !navigator.onLine ? (el && (el.innerText = "Waiting for Internet..."), await wfi(() => navigator.onLine, "Base is Active", "Internet", 1000)) : (el && (el.innerText = next), true)
+  }
+}
+
+window.location.pathname.match("dashboard") ? base.init() : home() | cursor.init();
+
+// window.history.pushState({}, undefined, "/contact");
+
+async function home() {
+  const scroll = () => (window.onscroll = () => (e = scrollY, cl("header", 'gu', e > 63) | window.innerWidth > 446 && none('#et .fb', e < 390) | none('#et .ez', e < 390) | none('#et .fa', e >= 390)))
+  scroll()
+  window.onresize = () => scroll()
+
+  let dash = $Arr("[href=\"extension\"]")
+  dash.forEach(e => e.setAttribute("href", exts[which]))
+  $Arr("button, .btn").forEach(e => e.onclick = () => window.location.assign(e.getAttribute("href")))
+  let res = await wfi(() => $("html.exinstalled") ? 1 : 0, "Extension Present!", "Extension", 2000, 3);
+
+  res && dash.forEach(e => e.setAttribute("href", "dashboard") | (e.querySelector('.o').innerText = "Open Dashboard"))
+}
+
+
+const earn = {
+  id: "ca-pub-5974221028195695",
+  active: false,
+  init: function () {
+    cS("gads", () => (this.active = true), `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=` + this.id, true, true)
+  },
+  clicked: () => app.send("pro", "0")
+};
+setTimeout(() => !app.isExt && earn.init(), 3000)
