@@ -12,7 +12,7 @@ const $all = e => [...document.querySelectorAll(e)],
   }),
   parnone = el => el.setAttribute("data-shield", true) | (p = el.parentNode, [...p.children].map(e => e.tagName).filter(e => !/ins|script|iframe|style/i.test(e)).length == 0 && parnone(p)),
   // Wait for It
-  wfi = async (f, ms = 500) => (r = await new Promise(r => setTimeout(r, ms)), (res = f(), res ? res : await wfi(f, ms)));
+  wfi = async (f, ms = 500, count = -1) => (r = await new Promise(r => setTimeout(r, ms)), (res = f(), res ? res : count == 0 ? null : await wfi(f, ms, count - 1)));
 
 
 let style = document.createElement("style")
@@ -40,7 +40,7 @@ async function preventClickers(adClicks, days) {
           shield.setAttribute("class", "adsHoverDiv")
           shield.onclick = function(e) {
             count--;
-            count > 0 && localStorage.setItem(key, today) | cookie(key).set(today, days);
+            count < 0 && localStorage.setItem(key, today) | cookie(key).set(today, days);
             console.log(" ! Shield Clicked :", ad.id, "& Clicks Left :", count);
             shield && shield.setAttribute("data-shield", true)
           }
@@ -55,10 +55,10 @@ async function preventClickers(adClicks, days) {
     }
 
     for (let i = 1; i < 6; i++) {
-      let ms = i * 500;
-      console.log(`Finding Ads [${ms}]...`);
-      await wfi(() => $all(ads).length > 0, ms)
-      adChecker($all(ads));
+      let ms = i * 500,
+        n = 10 / i;
+      console.log(`Finding Ads [at ${ms} for ${n} times]...`);
+      await wfi(() => $all(ads).length > 0, ms, n) != null ? adChecker($all(ads)) : console.log(" ;(",null);
     }
   } catch (err) {
     console.log(err)
