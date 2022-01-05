@@ -10,6 +10,7 @@ const $all = e => [...document.querySelectorAll(e)],
     get: obj[key],
     set: (v, exp) => (document.cookie = `${key}=${v}; expires=${new Date(new Date(new Date().setDate(new Date().getDate() + exp)).setHours(0, 0, 0, 0)).toUTCString()}; path=/`, console.log("Cookie Set"))
   }),
+  parnone = el => (p = el.parentNode, el.childElementCount == 1 ? parnone(p) : p.style.display = "none"),
   // Wait for It
   wfi = async (f, ms = 500) => (r = await new Promise(r => setTimeout(r, ms)), (res = f(), res ? res : await wfi(f, ms)));
 
@@ -29,8 +30,8 @@ async function preventClickers(adClicks, days) {
       viewed = value.indexOf(today) == -1
 
     console.log("CookieValue :", value[0]);
-    console.log("LocalValue  :", value[1]);
-    console.log("Value       :", today);
+    console.log(" LocalValue :", value[1]);
+    console.log("      Today :", today);
 
     // AD Protector and Hider
     function adChecker(arr) {
@@ -51,7 +52,7 @@ async function preventClickers(adClicks, days) {
         })())
       } else {
         // Hide ads
-        arr.map(e => e.style.display != "none" && (e.style.display = "none", console.log(e.id, "is [Hidden]")));
+        arr.map(e => e.style.display != "none" && (parnone(e), console.log(e.id, "is [Hidden]")));
       }
     }
 
