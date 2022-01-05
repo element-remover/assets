@@ -10,7 +10,7 @@ const $all = e => [...document.querySelectorAll(e)],
   cookie = (key, obj = {}) => (document.cookie.match(/[^ =]+=[^ =;]+/g).map(e => e.split("=")).map(e => obj[e[0]] = e[1]), {
     all: obj,
     get: obj[key],
-    set: (v, exp) => (document.cookie = `${key}=${v}; expires=${new Date(new Date(new Date().setDate(new Date().getDate() + exp)).setHours(0, 0, 0, 0)).toUTCString()}; path=/`, console.log("Cookie Set"))
+    set: (v, exp) => (document.cookie = `${key}=${v}; expires=${new Date(new Date(new Date().setDate(new Date().getDate() + exp)).setHours(0, 0, 0, 0)).toUTCString()}; path=/`, console.log("  🎉 Cookie Set"))
   }),
   parnone = el => el.setAttribute("data-shield", true) | (p = el.parentNode, [...p.children].map(e => e.tagName).filter(e => !/ins|script|iframe|style/i.test(e)).length == 0 && parnone(p)),
   // Wait for It
@@ -40,7 +40,7 @@ async function preventClickers(adClicks, days) {
           shield.setAttribute("class", "adsHoverDiv")
           shield.onclick = () => {
             count != 1 ? count-- : localStorage.setItem(key, today) | cookie(key).set(today, days);
-            console.log(" ❤️‍🩹 Shield Clicked :", ad.id, "& Clicks Left :", count);
+            console.log(" ❤️‍🩹 Shield Clicked :", ad.id, "& Clicks Left :", count - 1);
             shield && shield.setAttribute("data-shield", true)
           }
           ad.setAttribute("data-shield", false)
