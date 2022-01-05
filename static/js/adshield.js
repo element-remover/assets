@@ -16,7 +16,7 @@ const $all = e => [...document.querySelectorAll(e)],
 
 
 let style = document.createElement("style")
-style.innerHTML = `.adsHoverDiv{width:100%;height:100%;position:absolute;top:0;right:0;left:0;bottom:0;background:transparent;z-index:4;}`
+style.innerHTML = `.adsHoverDiv{width:100%;height:100%;position:absolute;cursor:pointer;top:0;right:0;left:0;bottom:0;background:transparent;z-index:4;}`
 document.body.appendChild(style);
 
 async function preventClickers(adClicks, days) {
