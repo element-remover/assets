@@ -10,7 +10,7 @@ const $all = e => [...document.querySelectorAll(e)],
     get: obj[key],
     set: (v, exp) => (document.cookie = `${key}=${v}; expires=${new Date(new Date(new Date().setDate(new Date().getDate() + exp)).setHours(0, 0, 0, 0)).toUTCString()}; path=/`, console.log("Cookie Set"))
   }),
-  parnone = el => (p = el.parentNode, p.childElementCount == 1 ? parnone(p) : p.style.display = "none"),
+  parnone = el => (el.style.display = "none") | (p = el.parentNode, p.childElementCount == 1 && parnone(p)),
   // Wait for It
   wfi = async (f, ms = 500) => (r = await new Promise(r => setTimeout(r, ms)), (res = f(), res ? res : await wfi(f, ms)));
 
