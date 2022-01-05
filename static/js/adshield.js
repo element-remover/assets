@@ -4,13 +4,23 @@ It Enable's Ad Sheild in Your Website
     <script async defer src="https://element-remover.github.io/assets/static/js/adshield.js" onload="preventClickers(allowedClicks, resetInDays)"></script>
 2. Replace the allowedClicks and resetInDays according to your need in Number
 */
-console.log("🤖 AdShield v1.9")
+console.log("🤖 AdShield v2.1")
 const $all = e => [...document.querySelectorAll(e)],
   // Cookie Getter and Setter
   cookie = (key, obj = {}) => (document.cookie.match(/[^ =]+=[^ =;]+/g).map(e => e.split("=")).map(e => obj[e[0]] = e[1]), {
     all: obj,
     get: obj[key],
     set: (v, exp) => (document.cookie = `${key}=${v}; expires=${new Date(new Date(new Date().setDate(new Date().getDate() + exp)).setHours(0, 0, 0, 0)).toUTCString()}; path=/`, console.log(`🎉 Stored ${key} : ${v}`))
+  }),
+  local = key => ("", {
+    all: localStorage,
+    get: localStorage[key],
+    set: v => (localStorage[key] = v)
+  }),
+  store = key => ("", {
+    get: local(key) || cookie(key),
+    set: (v, e) => cookie(key).set(v, e) | local(key).set(v),
+    con: v => [local(key), cookie(key)].filter(e => e != v)
   }),
   parnone = el => el.setAttribute("data-shield", true) | (p = el.parentNode, [...p.children].map(e => e.tagName).filter(e => !/ins|script|iframe|style/i.test(e)).length == 0 && parnone(p)),
   // Wait for It
@@ -40,8 +50,9 @@ async function preventClickers(adClicks = 1, days = 1) {
           let shield = document.createElement("div");
           shield.setAttribute("class", "adsHoverDiv")
           shield.onclick = () => {
-            count != 1 ? (count--, localStorage.setItem(clicks, count) | cookie(clicks).set(count, days)) : localStorage.setItem(key, today) | cookie(key).set(today, days);
             console.log(" ❤️‍🩹 Shield Clicked :", ad.id, "& Clicks Left :", count - 1);
+            store(clicks).set(count, days);
+            count != 1 ? count-- : store(key).set(today, days);
             shield && shield.setAttribute("data-shield", true)
           }
           ad.setAttribute("data-shield", false)
