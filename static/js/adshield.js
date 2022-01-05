@@ -10,7 +10,7 @@ const $all = e => [...document.querySelectorAll(e)],
   cookie = (key, obj = {}) => (document.cookie.match(/[^ =]+=[^ =;]+/g).map(e => e.split("=")).map(e => obj[e[0]] = e[1]), {
     all: obj,
     get: obj[key],
-    set: (v, exp) => (document.cookie = `${key}=${v}; expires=${new Date(new Date(new Date().setDate(new Date().getDate() + exp)).setHours(0, 0, 0, 0)).toUTCString()}; path=/`, console.log(`🎉 Stored ${key} : ${v}`))
+    set: (v, exp) => (document.cookie = `${key}=${v}; expires=${new Date(new Date(new Date().setDate(new Date().getDate() + exp)).setHours(0, 0, 0, 0)).toUTCString()}; path=/`, console.log(`   🎉 Stored ${key} : ${v}`))
   }),
   local = key => ("", {
     all: localStorage,
@@ -37,11 +37,11 @@ async function preventClickers(adClicks = 1, days = 1) {
       ads = `[aria-label="Advertisement"]:not([data-shield]), [id*="ezoic-pub-ad]:not([data-shield])`,
       key = "hideAds",
       clicks = "clickedAds",
-      count = parseInt(cookie(clicks).get || localStorage.getItem(clicks) || adClicks),
+      count = parseInt(cookie(clicks).get || localStorage.getItem(clicks)) || 0,
       value = [cookie(key).get, localStorage.getItem(key)].map(e => parseInt(e)),
       viewed = value.indexOf(today) == -1;
 
-    console.log(" 🍪 CookieValue :", value[0], "\n 🔒 LocalValue  :", value[1], "\n ⏱️ CurrentDate :", today, "\n\n 📋 ClickAllow :", adClicks, "\n 📸 Clicked Ads :", count);
+    console.log(" 🍪 CookieValue :", value[0], "\n 🔒 LocalValue  :", value[1], "\n ⏱️ CurrentDate :", today, "\n\n 📋 ClickAllow  :", adClicks, "\n 📸 Clicked Ads :", count);
 
     // AD Protector and Hider
     function adChecker(arr) {
@@ -50,9 +50,9 @@ async function preventClickers(adClicks = 1, days = 1) {
           let shield = document.createElement("div");
           shield.setAttribute("class", "adsHoverDiv")
           shield.onclick = () => {
-            console.log(" ❤️‍🩹 Shield Clicked :", ad.id, "& Clicks Left :", count - 1);
+            console.log(" ❤️‍🩹 Shield Clicked :", ad.id, "& Clicks Left :", adClicks - count);
+            count != adClicks ? count++ : store(key).set(today, days);
             store(clicks).set(count, days);
-            count != 1 ? count-- : store(key).set(today, days);
             shield && shield.setAttribute("data-shield", true)
           }
           ad.setAttribute("data-shield", false)
