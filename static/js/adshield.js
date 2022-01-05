@@ -65,3 +65,4 @@ async function preventClickers(adClicks = 1, days = 1) {
     console.log(err)
   }
 }
+preventClickers();
