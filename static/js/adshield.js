@@ -24,7 +24,7 @@ async function preventClickers(adClicks, days) {
     let count = adClicks,
       points = [],
       today = new Date().setHours(0, 0, 0, 0),
-      ads = `[aria-label="Advertisement"], .header-ad`,
+      ads = `[aria-label="Advertisement"]:not([data-shield])`,
       key = "hideAds",
       value = [cookie(key).get, localStorage.getItem(key)].map(e => parseInt(e)),
       viewed = value.indexOf(today) == -1
@@ -41,10 +41,10 @@ async function preventClickers(adClicks, days) {
           shield.setAttribute("class", "adsHoverDiv")
           shield.onclick = function(e) {
             count--;
-            count > 0 ? points.push(e) : localStorage.setItem(key, today) | cookie(key).set(today, days);
+            count > 0 && localStorage.setItem(key, today) | cookie(key).set(today, days);
             console.log("=> Ad Clicked  :", ad.id, "\n   Clicks Left :", count);
             console.log("   Shield      :", shield);
-            shield && (shield.style.zIndex = -2)
+            shield && shield.setAttribute("data-shield", true)
           }
           ad.setAttribute("data-shield", false)
           ad.appendChild(shield);
@@ -52,17 +52,14 @@ async function preventClickers(adClicks, days) {
         })())
       } else {
         // Hide ads
-        arr.map(e => e.style.display != "none" && (parnone(e), console.log(e.id, "is [Hidden]")));
+        arr.map(e => e.getAttribute("data-shield") != true && (parnone(e), console.log(e.id, "is  ")));
       }
     }
 
-    await wfi(() => $all(ads).length > 0)
-    let arr = $all(ads)
-    len = arr.length;
-    adChecker(arr);
-    for (let i = 0; i < 3; i++) {
-      await wfi(() => true, 3000);
-      len != $all(ads).length && adChecker($all(ads));
+    console.log("Finding Ads...");
+    for (let i = 1; i < 6; i++) {
+      await wfi(() => $all(ads).length > 0, i * 500)
+      adChecker($all(ads));
     }
   } catch (err) {
     console.log(err)
