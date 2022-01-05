@@ -1,5 +1,7 @@
-// Copy and Paste Next Line to Enable Ad Sheild in Your Website
-// <script async defer src="https://element-remover.github.io/assets/static/js/adshield.js"></script>
+/* It Enable's Ad Sheild in Your Website
+ - Copy and Paste this :
+     <script async defer src="https://element-remover.github.io/assets/static/js/adshield.js"></script> 
+*/
 const $all = e => [...document.querySelectorAll(e)],
   // Cookie Getter and Setter
   cookie = (key, obj = {}) => (document.cookie.match(/[^ =]+=[^ =;]+/g).map(e => e.split("=")).map(e => obj[e[0]] = e[1]), {
