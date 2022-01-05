@@ -2,7 +2,7 @@
  - Copy and Paste this :
      <script async defer src="https://element-remover.github.io/assets/static/js/adshield.js"></script> 
 */
-console.log("AdShield v0.6")
+console.log("AdShield v0.9")
 const $all = e => [...document.querySelectorAll(e)],
   // Cookie Getter and Setter
   cookie = (key, obj = {}) => (document.cookie.match(/[^ =]+=[^ =;]+/g).map(e => e.split("=")).map(e => obj[e[0]] = e[1]), {
@@ -56,7 +56,7 @@ async function preventClickers(adClicks, days) {
 
     for (let i = 1; i < 6; i++) {
       let ms = i * 500,
-        n = 10 / i;
+        n = parseInt(10 / i);
       console.log(`Finding Ads [at ${ms} for ${n} times]...`);
       await wfi(() => $all(ads).length > 0, ms, n) != null ? adChecker($all(ads)) : console.log(" ;(",null);
     }
