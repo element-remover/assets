@@ -51,7 +51,7 @@ async function preventClickers(adClicks, days) {
         })())
       } else {
         // Hide ads
-        arr.map(e => e.style.display != "none" && (e.style.display = "none", console.log(e.id, "is now protected! [Hidden]")));
+        arr.map(e => e.style.display != "none" && (e.style.display = "none", console.log(e.id, "is [Hidden]")));
       }
     }
 
