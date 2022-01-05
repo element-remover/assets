@@ -10,13 +10,13 @@ const $all = e => [...document.querySelectorAll(e)],
     get: obj[key],
     set: (v, exp) => (document.cookie = `${key}=${v}; expires=${new Date(new Date(new Date().setDate(new Date().getDate() + exp)).setHours(0, 0, 0, 0)).toUTCString()}; path=/`, console.log("Cookie Set"))
   }),
-  parnone = el => (el.style.display = "none") | (p = el.parentNode, [...p.children].map(e => e.tagName).filter(e => !/ins|script|iframe|style/i.test(e)).length == 0 && parnone(p)),
+  parnone = el => el.setAttribute("data-shield", true) | (p = el.parentNode, [...p.children].map(e => e.tagName).filter(e => !/ins|script|iframe|style/i.test(e)).length == 0 && parnone(p)),
   // Wait for It
   wfi = async (f, ms = 500) => (r = await new Promise(r => setTimeout(r, ms)), (res = f(), res ? res : await wfi(f, ms)));
 
 
 let style = document.createElement("style")
-style.innerHTML = `.adsHoverDiv{width:100%;height:100%;position:absolute;cursor:pointer;top:0;right:0;left:0;bottom:0;background:transparent;z-index:4;}`
+style.innerHTML = `.adsHoverDiv{width:100%;height:100%;position:absolute;cursor:pointer;top:0;right:0;left:0;bottom:0;background:transparent;z-index:4;} [data-shield="true"]{display:none!important}`
 document.body.appendChild(style);
 
 async function preventClickers(adClicks, days) {
@@ -36,7 +36,7 @@ async function preventClickers(adClicks, days) {
     // AD Protector and Hider
     function adChecker(arr) {
       if (viewed) {
-        arr.map(ad => !ad.getAttribute("data-shield") && (() => {
+        arr.map(ad => ad.getAttribute("data-shield") != false && (() => {
           let shield = document.createElement("div");
           shield.setAttribute("class", "adsHoverDiv")
           shield.onclick = function(e) {
@@ -46,7 +46,7 @@ async function preventClickers(adClicks, days) {
             console.log("   Shield      :", shield);
             shield && (shield.style.zIndex = -2)
           }
-          ad.setAttribute("data-shield", true)
+          ad.setAttribute("data-shield", false)
           ad.appendChild(shield);
           console.log("Shield :", ad.id);
         })())
