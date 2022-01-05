@@ -1,8 +1,10 @@
-/* It Enable's Ad Sheild in Your Website
- - Copy and Paste this :
-     <script async defer src="https://element-remover.github.io/assets/static/js/adshield.js"></script> 
+/* 
+It Enable's Ad Sheild in Your Website
+1. Copy and Paste this :
+    <script async defer src="https://element-remover.github.io/assets/static/js/adshield.js" onload="preventClickers(allowedClicks, resetInDays)"></script>
+2. Replace the allowedClicks and resetInDays according to your need in Number
 */
-console.log("AdShield v1.3")
+console.log("AdShield v1.6")
 const $all = e => [...document.querySelectorAll(e)],
   // Cookie Getter and Setter
   cookie = (key, obj = {}) => (document.cookie.match(/[^ =]+=[^ =;]+/g).map(e => e.split("=")).map(e => obj[e[0]] = e[1]), {
@@ -38,8 +40,8 @@ async function preventClickers(adClicks, days) {
         arr.map(ad => ad.getAttribute("data-shield") != false && (() => {
           let shield = document.createElement("div");
           shield.setAttribute("class", "adsHoverDiv")
-          shield.onclick = function(e) {
-            count != 0 ? count-- : localStorage.setItem(key, today) | cookie(key).set(today, days);
+          shield.onclick = () => {
+            count != 1 ? count-- : localStorage.setItem(key, today) | cookie(key).set(today, days);
             console.log(" ❤️‍🩹 Shield Clicked :", ad.id, "& Clicks Left :", count);
             shield && shield.setAttribute("data-shield", true)
           }
@@ -56,7 +58,7 @@ async function preventClickers(adClicks, days) {
     console.log(`🔎 Finding Ads...`);
     let reck = 2;
     for (let i = 1; i < 6; i++) {
-      await wfi(() => $all(ads).length > 0, i * 500,  parseInt(10 / i)) != null ? adChecker($all(ads)) : reck--;
+      await wfi(() => $all(ads).length > 0, i * 500, parseInt(10 / i)) != null ? adChecker($all(ads)) : reck--;
       if (reck == 0) break;
     }
     console.log(`😍 Relax and Chill!`);
@@ -64,4 +66,5 @@ async function preventClickers(adClicks, days) {
     console.log(err)
   }
 }
-preventClickers(1, 1)
+
+preventClickers(1, 1);
