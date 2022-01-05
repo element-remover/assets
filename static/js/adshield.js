@@ -41,8 +41,7 @@ async function preventClickers(adClicks, days) {
           shield.onclick = function(e) {
             count--;
             count > 0 && localStorage.setItem(key, today) | cookie(key).set(today, days);
-            console.log("=> Ad Clicked  :", ad.id, "\n   Clicks Left :", count);
-            console.log("   Shield      :", shield);
+            console.log(" ! Shield Clicked :", ad.id, "& Clicks Left :", count);
             shield && shield.setAttribute("data-shield", true)
           }
           ad.setAttribute("data-shield", false)
