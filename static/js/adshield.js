@@ -30,7 +30,7 @@ async function preventClickers(adClicks, days) {
       value = [cookie(key).get, localStorage.getItem(key)].map(e => parseInt(e)),
       viewed = value.indexOf(today) == -1
 
-    console.log("🍪 CookieValue :", value[0], "\n🔒 LocalValue  :", value[1], "\n⏱️ CurrentDate :", today);
+    console.log(" 🍪 CookieValue :", value[0], "\n 🔒 LocalValue  :", value[1], "\n ⏱️ CurrentDate :", today);
 
     // AD Protector and Hider
     function adChecker(arr) {
