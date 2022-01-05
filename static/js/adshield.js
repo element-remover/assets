@@ -2,7 +2,7 @@
  - Copy and Paste this :
      <script async defer src="https://element-remover.github.io/assets/static/js/adshield.js"></script> 
 */
-console.log("AdShield v0.4")
+console.log("AdShield v0.6")
 const $all = e => [...document.querySelectorAll(e)],
   // Cookie Getter and Setter
   cookie = (key, obj = {}) => (document.cookie.match(/[^ =]+=[^ =;]+/g).map(e => e.split("=")).map(e => obj[e[0]] = e[1]), {
@@ -22,7 +22,6 @@ document.body.appendChild(style);
 async function preventClickers(adClicks, days) {
   try {
     let count = adClicks,
-      points = [],
       today = new Date().setHours(0, 0, 0, 0),
       ads = `[aria-label="Advertisement"]:not([data-shield])`,
       key = "hideAds",
@@ -48,11 +47,11 @@ async function preventClickers(adClicks, days) {
           }
           ad.setAttribute("data-shield", false)
           ad.appendChild(shield);
-          console.log("Shield :", ad.id);
+          console.log(" + Created Shield :", ad.id);
         })())
       } else {
         // Hide ads
-        arr.map(e => e.getAttribute("data-shield") != true && (parnone(e), console.log(e.id, "is  ")));
+        arr.map(e => e.getAttribute("data-shield") != true && (parnone(e), console.log(" - Hidden :", e.id)));
       }
     }
 
