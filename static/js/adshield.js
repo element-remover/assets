@@ -39,30 +39,27 @@ async function preventClickers(adClicks, days) {
           let shield = document.createElement("div");
           shield.setAttribute("class", "adsHoverDiv")
           shield.onclick = function(e) {
-            count--;
-            count < 0 && localStorage.setItem(key, today) | cookie(key).set(today, days);
-            console.log(" ! Shield Clicked :", ad.id, "& Clicks Left :", count);
+            count != 0 ? count-- : localStorage.setItem(key, today) | cookie(key).set(today, days);
+            console.log(" ❤️‍🩹 Shield Clicked :", ad.id, "& Clicks Left :", count);
             shield && shield.setAttribute("data-shield", true)
           }
           ad.setAttribute("data-shield", false)
           ad.appendChild(shield);
-          console.log(" + Created Shield :", ad.id);
+          console.log(" 🛡️ Created Shield :", ad.id);
         })())
       } else {
         // Hide ads
-        arr.map(e => e.getAttribute("data-shield") != true && (parnone(e), console.log(" - Hidden :", e.id)));
+        arr.map(e => e.getAttribute("data-shield") != true && (parnone(e), console.log(" 🥷 Hidden :", e.id)));
       }
     }
 
+    console.log(`🔎 Finding Ads...`);
     let reck = 2;
     for (let i = 1; i < 6; i++) {
-      let ms = i * 500,
-        n = parseInt(10 / i);
-      console.log(`Finding Ads [at ${ms} for ${n} times]...`);
-      await wfi(() => $all(ads).length > 0, ms, n) != null ? adChecker($all(ads)) : reck--;
+      await wfi(() => $all(ads).length > 0, i * 500,  parseInt(10 / i)) != null ? adChecker($all(ads)) : reck--;
       if (reck == 0) break;
     }
-    console.log("😍 Relax and Chill!");
+    console.log(`😍 Relax and Chill!`);
   } catch (err) {
     console.log(err)
   }
