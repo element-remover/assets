@@ -37,7 +37,7 @@ async function preventClickers(adClicks = 1, days = 1) {
       ads = `[aria-label="Advertisement"], [id^='ezoic-ad'], [id^='ezoic'], [id^='ezmob']`.split(",").map(e => e + ':not([data-shield])').join(","),
       key = "hideAds",
       clicks = "clickedAds",
-      count = parseInt(cookie(clicks).get || localStorage.getItem(clicks)) || 0,
+      count = parseInt(cookie(clicks).get || localStorage.getItem(clicks)) || 1,
       value = [cookie(key).get, localStorage.getItem(key)].map(e => parseInt(e)),
       viewed = value.indexOf(today) == -1;
 
