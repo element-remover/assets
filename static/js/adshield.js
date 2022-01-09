@@ -39,7 +39,7 @@ async function preventClickers() {
 }
 
 const adShield = {
-  init: (allowedClicks, expiredays) => {
+  init: function (allowedClicks, expiredays){
     let key = "hideAds",
       clicks = "clickedAds",
       adClicks = allowedClicks || 1,
