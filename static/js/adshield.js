@@ -4,7 +4,7 @@ It Enable's Ad Sheild in Your Website
     <script async defer src="https://element-remover.github.io/assets/static/js/adshield.js" onload="preventClickers(allowedClicks, resetInDays)"></script>
 2. Replace the allowedClicks and resetInDays according to your need in Number
 */
-console.log("🤖 AdShield v2.4")
+console.log("🤖 AdShield v2.5")
 const $all = e => [...document.querySelectorAll(e)],
   // Cookie Getter and Setter
   cookie = (key, obj = {}) => (document.cookie.match(/[^ =]+=[^ =;]+/g).map(e => e.split("=")).map(e => obj[e[0]] = e[1]), {
@@ -66,8 +66,8 @@ async function preventClickers(adClicks = 1, days = 1) {
     }
 
     console.log(`🔎 Finding Ads...`);
-    for (let i = 1; i < 6; i++) {
-      await wfi(() => $all(ads).length > 0, i * 500, parseInt(10 / i)) != null && adChecker($all(ads));
+    for (let i = 1; i < 20; i++) {
+      await wfi(() => $all(ads).length > 0, 500, parseInt(10 / i)) != null && adChecker($all(ads));
     }
     console.log(`😍 Relax and Chill!`);
   } catch (err) {
