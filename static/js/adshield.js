@@ -66,10 +66,8 @@ async function preventClickers(adClicks = 1, days = 1) {
     }
 
     console.log(`🔎 Finding Ads...`);
-    let reck = 2;
     for (let i = 1; i < 6; i++) {
-      await wfi(() => $all(ads).length > 0, i * 500, parseInt(10 / i)) != null ? adChecker($all(ads)) : reck--;
-      if (reck == 0) break;
+      await wfi(() => $all(ads).length > 0, i * 500, parseInt(10 / i)) != null && adChecker($all(ads));
     }
     console.log(`😍 Relax and Chill!`);
   } catch (err) {
