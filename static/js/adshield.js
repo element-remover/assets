@@ -39,7 +39,7 @@ async function preventClickers() {
 }
 
 const adShield = {
-  init: function (allowedClicks, expiredays){
+  init: function(allowedClicks, expiredays) {
     let key = "hideAds",
       clicks = "clickedAds",
       adClicks = allowedClicks || 1,
@@ -59,7 +59,11 @@ const adShield = {
           count++;
           console.log(" ❤️‍🩹 AD Clicked :", el.id, "& Clicks Left :", adClicks - count);
           store(clicks).set(count, days)
-          count === adClicks && clearInterval(monitor) || store(key).set(today, days) || adHider($all(ads))
+          if (count === adClicks) {
+            clearInterval(monitor);
+            preventClickers();
+            store(key).set(today, days);
+          }
         }
       })
     } else {
