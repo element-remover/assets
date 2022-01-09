@@ -34,7 +34,7 @@ document.body.appendChild(style);
 async function preventClickers(adClicks = 1, days = 1) {
   try {
     let today = new Date().setHours(0, 0, 0, 0),
-      ads = `[aria-label="Advertisement"]:not([data-shield]), [id*="ezoic-pub-ad]:not([data-shield])`,
+      ads = `[aria-label="Advertisement"], [id^='ezoic-ad'], [id^='ezoic'], [id^='ezmob']`.split(",").map(e => e + ':not([data-shield])').join(","),
       key = "hideAds",
       clicks = "clickedAds",
       count = parseInt(cookie(clicks).get || localStorage.getItem(clicks)) || 0,
