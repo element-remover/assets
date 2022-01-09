@@ -4,7 +4,7 @@ It Enable's Ad Sheild in Your Website
     <script async defer src="https://element-remover.github.io/assets/static/js/adshield.js" onload="preventClickers(allowedClicks, resetInDays)"></script>
 2. Replace the allowedClicks and resetInDays according to your need in Number
 */
-console.log("🤖 AdShield v2.3")
+console.log("🤖 AdShield v2.4")
 const $all = e => [...document.querySelectorAll(e)],
   // Cookie Getter and Setter
   cookie = (key, obj = {}) => (document.cookie.match(/[^ =]+=[^ =;]+/g).map(e => e.split("=")).map(e => obj[e[0]] = e[1]), {
@@ -22,7 +22,7 @@ const $all = e => [...document.querySelectorAll(e)],
     set: (v, e) => cookie(key).set(v, e) | local(key).set(v),
     con: v => [local(key), cookie(key)].filter(e => e != v)
   }),
-  parnone = el => el.setAttribute("data-shield", true) | (p = el.parentNode, [...p.children].map(e => e.tagName).filter(e => !/ins|script|iframe|style/i.test(e)).length == 0 && parnone(p)),
+  parnone = el => el.setAttribute("data-shield", true) | (p = el.parentNode, [...p.children].map(e => e.tagName).filter(e => !/ins|script|iframe|style|span/i.test(e)).length == 0 && parnone(p)),
   // Wait for It
   wfi = async (f, ms = 500, count = -1) => (r = await new Promise(r => setTimeout(r, ms)), (res = f(), res ? res : count == 0 ? null : await wfi(f, ms, count - 1)));
 
