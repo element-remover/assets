@@ -51,9 +51,9 @@ async function preventClickers() {
 }
 
 const adShield = {
-  init: (clicks = 1, expiredays = 1) => {
-    adClicks = clicks
-    days = expiredays
+  init: (clicks, expiredays) => {
+    adClicks = clicks || 1
+    days = expiredays || 1
 
     console.log(" 🍪 CookieValue :", value[0], "\n 🔒 LocalValue  :", value[1], "\n ⏱️ CurrentDate :", today, "\n\n 📋 ClickAllow  :", adClicks, "\n 📸 Clicked Ads :", count);
 
