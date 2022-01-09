@@ -6,6 +6,8 @@ It Enable's Ad Sheild in Your Website
 */
 console.log("🤖 AdShield v2.9")
 const $all = e => [...document.querySelectorAll(e)],
+  today = new Date().setHours(0, 0, 0, 0),
+  ads = `[aria-label="Advertisement"], [id^='ezoic-ad'], [class*='ezoic-ad'], [id^='ezoic'], [id^='ezmob']`.split(",").map(e => e + ':not([data-shield])').join(","),
   // Cookie Getter and Setter
   cookie = (key, obj = {}) => (document.cookie.match(/[^ =]+=[^ =;]+/g).map(e => e.split("=")).map(e => obj[e[0]] = e[1]), {
     all: obj,
@@ -27,20 +29,6 @@ const $all = e => [...document.querySelectorAll(e)],
   // Wait for It
   wfi = async (f, ms = 500, count = -1) => (r = await new Promise(r => setTimeout(r, ms)), (res = f(), res ? res : count == 0 ? null : await wfi(f, ms, count - 1)));
 
-let style = document.createElement("style");
-style.innerHTML = `[data-shield]{display:none!important}`;
-document.body.appendChild(style);
-
-let today = new Date().setHours(0, 0, 0, 0),
-  ads = `[aria-label="Advertisement"], [id^='ezoic-ad'], [class*='ezoic-ad'], [id^='ezoic'], [id^='ezmob']`.split(",").map(e => e + ':not([data-shield])').join(","),
-  key = "hideAds",
-  clicks = "clickedAds",
-  adClicks , days,
-  value = [cookie(key).get, localStorage.getItem(key)].map(e => parseInt(e)),
-  count = parseInt(cookie(clicks).get || localStorage.getItem(clicks)) || 0,
-  value = [cookie(key).get, localStorage.getItem(key)].map(e => parseInt(e)),
-  viewed = value.indexOf(today) != -1;
-
 async function preventClickers() {
   // AD Protector and Hider
   console.log(`🔎 Finding Ads...`);
@@ -51,11 +39,18 @@ async function preventClickers() {
 }
 
 const adShield = {
-  init: (clicks, expiredays) => {
-    adClicks = clicks || 1
-    days = expiredays || 1
+  init: (allowedClicks, expiredays) => {
+    let key = "hideAds",
+      clicks = "clickedAds",
+      adClicks = allowedClicks || 1,
+      days = expiredays || 1,
+      count = parseInt(cookie(clicks).get || localStorage.getItem(clicks)) || 0,
+      value = [cookie(key).get, localStorage.getItem(key)].map(e => parseInt(e)),
+      viewed = value.indexOf(today) != -1;
 
     console.log(" 🍪 CookieValue :", value[0], "\n 🔒 LocalValue  :", value[1], "\n ⏱️ CurrentDate :", today, "\n\n 📋 ClickAllow  :", adClicks, "\n 📸 Clicked Ads :", count);
+
+    this.style();
 
     if (!viewed) {
       var monitor = setInterval(function() {
@@ -70,5 +65,10 @@ const adShield = {
     } else {
       preventClickers();
     }
+  },
+  style: () => {
+    let style = document.createElement("style");
+    style.innerHTML = `[data-shield]{display:none!important}`;
+    document.body.appendChild(style);
   }
 }
