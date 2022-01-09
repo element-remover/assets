@@ -59,6 +59,7 @@ const adShield = {
           count++;
           console.log(" ❤️‍🩹 AD Clicked :", el.id, "& Clicks Left :", adClicks - count);
           store(clicks).set(count, days)
+          document.activeElement.blur();
           if (count === adClicks) {
             clearInterval(monitor);
             preventClickers();
