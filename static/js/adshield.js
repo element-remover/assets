@@ -1,10 +1,10 @@
 /* 
 It Enable's Ad Sheild in Your Website
 1. Copy and Paste this :
-    <script async defer src="https://element-remover.github.io/assets/static/js/adshield.js" onload="preventClickers(allowedClicks, resetInDays)"></script>
+    <script async defer src="https://element-remover.github.io/assets/static/js/adshield.js" onload="adShield.init(allowedClicks, resetInDays)"></script>
 2. Replace the allowedClicks and resetInDays according to your need in Number
 */
-console.log("🤖 AdShield v2.7")
+console.log("🤖 AdShield v2.9")
 const $all = e => [...document.querySelectorAll(e)],
   // Cookie Getter and Setter
   cookie = (key, obj = {}) => (document.cookie.match(/[^ =]+=[^ =;]+/g).map(e => e.split("=")).map(e => obj[e[0]] = e[1]), {
@@ -34,10 +34,12 @@ document.body.appendChild(style);
 let today = new Date().setHours(0, 0, 0, 0),
   ads = `[aria-label="Advertisement"], [id^='ezoic-ad'], [class*='ezoic-ad'], [id^='ezoic'], [id^='ezmob']`.split(",").map(e => e + ':not([data-shield])').join(","),
   key = "hideAds",
+  clicks = "clickedAds",
+  adClicks , days,
+  value = [cookie(key).get, localStorage.getItem(key)].map(e => parseInt(e)),
+  count = parseInt(cookie(clicks).get || localStorage.getItem(clicks)) || 0,
   value = [cookie(key).get, localStorage.getItem(key)].map(e => parseInt(e)),
   viewed = value.indexOf(today) != -1;
-
-console.log(" 🍪 CookieValue :", value[0], "\n 🔒 LocalValue  :", value[1], "\n ⏱️ CurrentDate :", today);
 
 async function preventClickers() {
   // AD Protector and Hider
@@ -48,27 +50,25 @@ async function preventClickers() {
   console.log(`😍 Relax and Chill!`);
 }
 
-if (!viewed) {
-  var monitor = setInterval(function() {
-    var elem = document.activeElement;
-    if (elem && elem.tagName == 'IFRAME') {
-      clearInterval(monitor);
-      console.log(" ❤️‍🩹 AD Clicked.");
-      store(key).set(today, days);
-      adHider($all(ads))
+const adShield = {
+  init: (clicks = 1, expiredays = 1) => {
+    adClicks = clicks
+    days = expiredays
+
+    console.log(" 🍪 CookieValue :", value[0], "\n 🔒 LocalValue  :", value[1], "\n ⏱️ CurrentDate :", today, "\n\n 📋 ClickAllow  :", adClicks, "\n 📸 Clicked Ads :", count);
+
+    if (!viewed) {
+      var monitor = setInterval(function() {
+        var el = document.activeElement;
+        if (el && el.tagName == 'IFRAME') {
+          count++;
+          console.log(" ❤️‍🩹 AD Clicked :", el.id, "& Clicks Left :", adClicks - count);
+          store(clicks).set(count, days)
+          count != adClicks && clearInterval(monitor) || store(key).set(today, days) || adHider($all(ads))
+        }
+      })
+    } else {
+      preventClickers();
     }
-  }, 100);
-} else {
-  preventClickers();
+  }
 }
-
-
-// main document must be focused in order for window blur to fire when the iframe is interacted with. 
-// There's still an issue that if user interacts outside of the page and then click iframe first without clicking page, the following logic won't run. But since the OP is only concerned about first click this shouldn't be a problem.
-// window.addEventListener("blur", () => {
-//   setTimeout(() => {
-//     if (document.activeElement.tagName === "IFRAME") {
-//        doSomething 
-//     }
-//   });
-// }, { once: true });
